@@ -7,11 +7,11 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f4f4f4;
+            margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            margin: 0;
         }
 
         form {
@@ -25,6 +25,10 @@
         h3 {
             text-align: center;
             color: #333;
+        }
+
+        p {
+            margin: 10px 0;
         }
 
         input {
@@ -54,26 +58,26 @@
 </head>
 <body>
 
-<form action="#" method="POST">
+<form action="#" th:action="@{/authenticateTheUser}" method="POST">
     <h3>Login Page</h3>
 
     <div th:if="${param.error}">
-        <div>Usuario o contraseña incorrectos</div>
+        <div>Has introducido un usuario/contraseña errónea </div>
     </div>
 
     <div th:if="${param.logout}">
-        <div>Sesión cerrada</div>
+        <div>Has cerrado sesion</div>
     </div>
 
     <p>
-        Usuario: <input type="text" name="username">
+        Username: <input type="text" name="username">
     </p>
 
     <p>
-        Contraseña: <input type="password" name="password">
+        Password: <input type="password" name="password">
     </p>
 
-    <input type="submit" value="Iniciar sesión">
+    <input type="submit" value="Login">
 </form>
 
 </body>
