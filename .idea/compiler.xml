@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Spring_Product2" />
-        <module name="Equipo1-Reto3-Spring" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
