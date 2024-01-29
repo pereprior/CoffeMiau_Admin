@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.Controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,4 +12,5 @@ public class HomeController {
         model.addAttribute("nombre",nombre);
         return "home";
     }
+
 }
