@@ -16,19 +16,19 @@ public class SecurityConfig {
 
         UserDetails clientTest = User.builder()
                 .username("client")
-                .password("{noop}hola01")
+                .password("{noop}client")
                 .roles("CLIENTE")
                 .build();
 
         UserDetails employeeTest = User.builder()
                 .username("employee")
-                .password("{noop}hola01")
+                .password("{noop}employee")
                 .roles("EMPLEADO")
                 .build();
 
         UserDetails adminTest = User.builder()
                 .username("admin")
-                .password("{noop}hola01")
+                .password("{noop}admin")
                 .roles("EMPLEADO","ADMINISTRADOR")
                 .build();
 
@@ -39,9 +39,6 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
                 configurer
-                        .requestMatchers("/").hasRole("CLIENTE")
-                        .requestMatchers("/users/**").hasRole("EMPLEADO")
-                        .requestMatchers("/systems/**").hasRole("ADMINISTRADOR")
                         .anyRequest().authenticated()
         ).formLogin(form ->
                 form
@@ -52,8 +49,7 @@ public class SecurityConfig {
                 LogoutConfigurer::permitAll
         ).exceptionHandling(configurer ->
                 configurer.accessDeniedPage("/access-denied")
-        )
-        ;
+        );
 
         return http.build();
     }
