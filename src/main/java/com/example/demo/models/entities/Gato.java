@@ -6,12 +6,13 @@ import jakarta.validation.constraints.NotEmpty;
 
 @Entity
 @Table(name="gatos")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Gato {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_gato")
-    private Long id_gato;
+    private Long idGato;
 
     @NotBlank
     @NotEmpty
@@ -26,31 +27,28 @@ public class Gato {
     @Column(name = "raza")
     private String raza;
 
-    @Column(name = "dueño")
-    private String dueño;
-
     @Column(name = "caracter")
     private String caracter;
 
     @NotBlank
     @NotEmpty
     @Column(name = "informacion_medica", nullable = false)
-    private String informacion_medica;
+    private String informacionMedica;
 
     @NotBlank
     @NotEmpty
     @Column(name = "enfermadades", nullable = false)
     private String enfermedades;
 
-    @Column(name = "castrado", nullable = false)
+    @Column(name = "castrado")
     private Boolean castrado;
 
-    public Long getId_gato() {
-        return id_gato;
+    public Long getIdGato() {
+        return idGato;
     }
 
-    public void setId_gato(Long id_gato) {
-        this.id_gato = id_gato;
+    public void setIdGato(Long idGato) {
+        this.idGato = idGato;
     }
 
     public String getNombre() {
@@ -85,14 +83,6 @@ public class Gato {
         this.foto = foto;
     }
 
-    public String getDueño() {
-        return dueño;
-    }
-
-    public void setDueño(String dueño) {
-        this.dueño = dueño;
-    }
-
     public String getCaracter() {
         return caracter;
     }
@@ -101,12 +91,12 @@ public class Gato {
         this.caracter = caracter;
     }
 
-    public String getInformacion_medica() {
-        return informacion_medica;
+    public String getInformacionMedica() {
+        return informacionMedica;
     }
 
-    public void setInformacion_medica(String informacion_medica) {
-        this.informacion_medica = informacion_medica;
+    public void setInformacionMedica(String informacionMedica) {
+        this.informacionMedica = informacionMedica;
     }
 
     public String getEnfermedades() {

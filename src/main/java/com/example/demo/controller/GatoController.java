@@ -1,11 +1,13 @@
 package com.example.demo.controller;
 
 import com.example.demo.models.entities.Gato;
+import com.example.demo.models.entities.GatoAdoptado;
 import com.example.demo.models.services.IGatoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @Controller
@@ -17,13 +19,13 @@ public class GatoController {
 
     @GetMapping("/listGatos")
     public String listGatos(Model model) {
-        List<Gato> gatos = gatoService.findAll();
+        List<Gato> gatos = gatoService.findAllGatos();
         model.addAttribute("gatos", gatos);
         return "list_gatos";
     }
 
-    @GetMapping("/formForAddGatos")
-    public String showFormForAddGato(Model model) {
+    @GetMapping("/formForAddGato")
+    public String formForAddGato(Model model) {
         Gato gato = new Gato();
         model.addAttribute("gato", gato);
         return "form_gato";
@@ -36,7 +38,7 @@ public class GatoController {
     }
 
     @GetMapping("/formForUpdateGato")
-    public String showFormForUpdateGato(@RequestParam("gatoId") Long id, Model model) {
+    public String formForUpdateGato(@RequestParam("gatoId") Long id, Model model) {
         Gato gato = gatoService.findById(id);
         model.addAttribute("gato", gato);
         return "form_gato";
@@ -47,5 +49,24 @@ public class GatoController {
         Gato gato = gatoService.findById(id);
         gatoService.delete(gato);
         return "redirect:/gatos/listGatos";
+    }
+
+    @GetMapping("/formForAdopcion")
+    public String formForAdopcion(@RequestParam("gatoId") Long id, Model model) {
+        Gato gato = gatoService.findById(id);
+        model.addAttribute("gato", gato);
+        model.addAttribute("gato_adoptado", new GatoAdoptado());
+        return "formulario_adopcion";
+    }
+
+    @PostMapping("/adoptar")
+    public String adoptarGato(@ModelAttribute("gato_adoptado") GatoAdoptado gatoParaAdopcion) {
+        try {
+            gatoService.adoptarGato(gatoParaAdopcion.getIdGato());
+            return "redirect:/gatos/listGatos";
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "redirect:/gatos/listGatos";
+        }
     }
 }
