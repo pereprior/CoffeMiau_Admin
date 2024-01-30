@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create LinPedido</title>
+</head>
+<body>
+
+<h2>Create LinPedido</h2>
+
+<form th:action="@{/linPedido/saveLinPedido}" method="post" th:object="${linpedido}">
+    <label for="producto">Producto:</label>
+    <select id="producto" name="producto.id_producto" th:field="*{producto}" required>
+        <option th:each="product : ${productos}" th:value="${product.id_producto}" th:text="${product.nombre}"></option>
+    </select>
+    <br>
+
+    <label for="cantidad">Cantidad:</label>
+    <input type="number" id="cantidad" name="cantidad" th:field="*{cantidad}" required>
+    <br>
+
+    <button type="submit">Guardar LinPedido</button>
+</form>
+
+</body>
+</html>
