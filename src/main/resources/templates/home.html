@@ -1,14 +1,55 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <title>Title</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
 
-    <body>
-        <h1 th:text="'Hola, '+ ${nombre}"></h1>
+        header {
+            background-color: #333;
+            padding: 10px;
+            color: white;
+        }
 
-        <a th:href="@{/usuarios}">Usuarios</a>
-        <a th:href="@{/pedidos}">Pedidos</a>
-    </body>
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #555;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #ff9900;
+        }
+    </style>
+</head>
+
+<body>
+<header>
+    <h1>Bienvenido al Sistema</h1>
+</header>
+
+<nav>
+    <a th:href="@{/usuarios}">Usuarios</a>
+    <a th:href="@{/pedidos}">Pedidos</a>
+    <a th:href="@{/product}">Productos</a>
+    <a th:href="@{/linpedido}">Líneas de productos</a>
+</nav>
+</body>
+
 </html>
