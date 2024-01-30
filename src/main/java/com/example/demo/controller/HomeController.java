@@ -1,4 +1,4 @@
-package com.example.demo.Controller;
+package com.example.demo.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,4 +13,9 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/systechsolutions")
+    public String systechsolutions(@RequestParam(name = "systechsolutions", required = true, defaultValue = "Pere") String nombre, Model model) {
+        model.addAttribute("systechsolutions",nombre);
+        return "systechsolutions";
+    }
 }
