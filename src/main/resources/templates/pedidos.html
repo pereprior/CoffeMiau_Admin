@@ -3,9 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Pedidos</title>
+    <link rel="stylesheet" th:href="@{css/home.css}">
 </head>
 
 <body>
+<header th:replace="fragments/header::header"></header>
 
 <h2>Lista de Pedidos</h2>
 <a th:href="@{/pedidos/add}">Crear</a>
