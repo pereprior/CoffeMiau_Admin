@@ -3,53 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-
-        header {
-            background-color: #333;
-            padding: 10px;
-            color: white;
-        }
-
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #555;
-            padding: 10px;
-            margin: 10px 0;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 18px;
-        }
-
-        nav a:hover {
-            color: #ff9900;
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{css/home.css}">
 </head>
 
 <body>
-<header>
-    <h1>Bienvenido al Sistema</h1>
-</header>
-
-<nav>
-    <a th:href="@{/usuarios}">Usuarios</a>
-    <a th:href="@{/pedidos}">Pedidos</a>
-    <a th:href="@{/product}">Productos</a>
-    <a th:href="@{/linpedido}">Líneas de productos</a>
-</nav>
+<header th:replace="fragments/header::header"></header>
 </body>
 
 </html>

@@ -23,7 +23,7 @@ public class Usuario {
     @Column(name = "telefono")
     private int telefono;
 
-    @OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
     private List<Pedido> pedidos;
 
     /*@Column(name = "gatos")

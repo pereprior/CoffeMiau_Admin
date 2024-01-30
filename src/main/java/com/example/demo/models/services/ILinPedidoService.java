@@ -1,6 +1,6 @@
 package com.example.demo.models.services;
 
-import com.example.demo.models.entity.LinPedido;
+import com.example.demo.models.entities.LinPedido;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.models.entity.Producto;
+import com.example.demo.models.entities.Producto;
 import com.example.demo.models.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

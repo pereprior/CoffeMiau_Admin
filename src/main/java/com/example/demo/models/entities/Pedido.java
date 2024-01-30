@@ -2,6 +2,8 @@ package com.example.demo.models.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "pedido")
 public class Pedido {
@@ -17,7 +19,8 @@ public class Pedido {
     @JoinColumn(name = "id_usuario")
     private Usuario cliente;
 
-    //private lineaPedido
+    @OneToMany(mappedBy = "id_lin_pedido", cascade = CascadeType.ALL)
+    private List<LinPedido> linPedido;
 
     public void setId(Long id) {
         this.id = id;
@@ -41,5 +44,13 @@ public class Pedido {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public List<LinPedido> getLinPedido() {
+        return linPedido;
+    }
+
+    public void setLinPedido(List<LinPedido> linPedido) {
+        this.linPedido = linPedido;
     }
 }

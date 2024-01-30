@@ -1,7 +1,7 @@
 package com.example.demo.models.services;
 
 
-import com.example.demo.models.entity.Producto;
+import com.example.demo.models.entities.Producto;
 
 import java.util.List;
 

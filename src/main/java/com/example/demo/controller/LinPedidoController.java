@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.models.entity.LinPedido;
+import com.example.demo.models.entities.LinPedido;
 import com.example.demo.models.services.LinPedidoService;
 import com.example.demo.models.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
