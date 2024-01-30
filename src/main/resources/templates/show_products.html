@@ -9,7 +9,12 @@
 <body>
 <header th:replace="fragments/header::header"></header>
 
-<h2>Product List</h2>
+<h2>Lista de Productos</h2>
+
+<a th:href="@{/product/save}">
+    <button>Crear</button>
+</a>
+<br><br>
 
 <table border="1">
     <thead>

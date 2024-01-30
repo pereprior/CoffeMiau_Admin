@@ -9,7 +9,12 @@
 <body>
 <header th:replace="fragments/header::header"></header>
 
-<h2>LinPedido List</h2>
+<h2>Lista de Lineas de Pedido</h2>
+
+<a th:href="@{/linPedido/save}">
+    <button>Crear</button>
+</a>
+<br><br>
 
 <table border="1">
     <thead>

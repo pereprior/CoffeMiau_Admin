@@ -10,14 +10,19 @@
 <header th:replace="fragments/header::header"></header>
 
 <h2>Lista de Pedidos</h2>
-<a th:href="@{/pedidos/add}">Crear</a>
 
-<table>
+<a th:href="@{/pedidos/add}">
+    <button>Crear</button>
+</a>
+<br><br>
+
+<table border="1">
     <thead>
     <tr>
         <th>ID</th>
         <th>Fecha</th>
         <th>Cliente ID</th>
+        <th>Acciones</th>
     </tr>
     </thead>
     <tbody>
@@ -26,18 +31,17 @@
         <td th:text="${pedido.fecha}"></td>
         <td th:text="${pedido.cliente.id}"></td>
         <td>
+            <a th:href="@{/pedidos/edit/{id}(id=${pedido.id})}">
+                <button>Editar</button>
+            </a>
+
             <form th:action="@{/pedidos/delete/{id}(id=${pedido.id})}" method="post" onclick="return confirm('¿Estás seguro?')">
                 <button type="submit">Borrar</button>
             </form>
         </td>
-        <td>
-            <a th:href="@{/pedidos/edit/{id}(id=${pedido.id})}">Editar</a>
-        </td>
     </tr>
     </tbody>
 </table>
-
-<a th:href="@{/}">Volver al menu</a>
 
 </body>
 </html>

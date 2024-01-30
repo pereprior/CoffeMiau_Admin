@@ -9,15 +9,19 @@
 <header th:replace="fragments/header::header"></header>
 
 <h2>Lista de Usuarios</h2>
-<a th:href="@{/usuarios/add}">Crear</a>
+<a th:href="@{/usuarios/add}">
+    <button>Crear</button>
+</a>
+<br><br>
 
-    <table>
+    <table border="1">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Teléfono</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -27,17 +31,16 @@
                 <td th:text="${usuario.email}"></td>
                 <td th:text="${usuario.telefono}"></td>
                 <td>
+                    <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">
+                        <button>Editar</button>
+                    </a>
                     <form th:action="@{/usuarios/delete/{usuario}(usuario=${usuario.id})}" method="post" onclick="return confirm('¿Estás seguro?')">
                         <button type="submit">Borrar</button>
                     </form>
-                </td>
-                <td>
-                    <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">Editar</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
-<a th:href="@{/}">Volver al menu</a>
 </body>
 </html>
