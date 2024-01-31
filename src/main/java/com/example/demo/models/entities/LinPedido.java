@@ -7,9 +7,13 @@ import jakarta.persistence.*;
 public class LinPedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_lin_pedido")
     private Long id_lin_pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pedido", nullable = false)  // Relación con Pedido
+    private Pedido pedido;
 
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)

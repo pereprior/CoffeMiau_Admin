@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Crear Nuevo Pedido</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Pedido</title>
 </head>
 <body>
 
-<h2>Crear Nuevo Pedido</h2>
-<div th:if="${error}" style="color: red;">
-    <p th:text="${error}"></p>
-</div>
+<h2>Agregar Pedido</h2>
 
-<form th:action="@{/pedidos/add}" th:object="${pedido}" method="post">
-    <label>Fecha: <input type="date" th:field="*{fecha}" required></label><br>
-    <label>Cliente ID: <input type="text" th:field="*{cliente}" required></label><br>
+<form th:action="@{/pedidos/add}" method="post" th:object="${pedido}">
+    <label for="cliente">Cliente:</label>
+    <select id="cliente" name="cliente.id" th:field="*{cliente}" required>
+        <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}"></option>
+    </select>
+    <br>
+
+    <label for="fecha">Fecha:</label>
+    <input type="date" id="fecha" name="fecha" th:field="*{fecha}" required>
+
     <button type="submit">Guardar Pedido</button>
 </form>
-
-<a th:href="@{/pedidos}">Volver a la lista de pedidos</a>
 
 </body>
 </html>
