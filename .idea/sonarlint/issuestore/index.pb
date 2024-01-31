@@ -1,3 +1,15 @@
 
 l
 <src/main/java/com/example/demo/models/entities/Producto.java,a/7/a7367219f86a68f08d8fd865cf11a697bb7cefbd
+k
+;src/main/java/com/example/demo/models/entities/Usuario.java,c/5/c514a3518214717a6d4544fd6f2a45d64b5c1a4f
+q
+Asrc/main/java/com/example/demo/controller/ProductoController.java,4/d/4d687a462d3616e2f29d874a638e7165077a5175
+w
+G.idea/sonarlint/issuestore/4/d/4d687a462d3616e2f29d874a638e7165077a5175,9/0/901f9a23c87a6ba739b1564ce48779ccca2cced2
+
+Q.idea/sonarlint/securityhotspotstore/4/d/4d687a462d3616e2f29d874a638e7165077a5175,6/2/623a5e545a01b44e0f1a541ba628144cb1942232
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0

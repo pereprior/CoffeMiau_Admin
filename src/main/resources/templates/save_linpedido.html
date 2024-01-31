@@ -4,24 +4,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create LinPedido</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .button {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Create LinPedido</h2>
+<div>
+    <h2>Create LinPedido</h2>
 
-<form th:action="@{/linPedido/saveLinPedido}" method="post" th:object="${linpedido}">
-    <label for="producto">Producto:</label>
-    <select id="producto" name="producto.id_producto" th:field="*{producto}" required>
-        <option th:each="product : ${productos}" th:value="${product.id_producto}" th:text="${product.nombre}"></option>
-    </select>
-    <br>
+    <form th:action="@{/linPedido/saveLinPedido}" method="post" th:object="${linpedido}">
+        <label for="producto">Producto:</label>
+        <select id="producto" name="producto.id_producto" th:field="*{producto}" required>
+            <option th:each="product : ${productos}" th:value="${product.id_producto}" th:text="${product.nombre}"></option>
+        </select>
+        <br>
 
-    <label for="cantidad">Cantidad:</label>
-    <input type="number" id="cantidad" name="cantidad" th:field="*{cantidad}" required>
-    <br>
+        <label for="cantidad">Cantidad:</label>
+        <input type="number" id="cantidad" name="cantidad" th:field="*{cantidad}" required>
+        <br>
 
-    <button type="submit">Guardar LinPedido</button>
-</form>
+        <div class="button">
+            <button type="submit">Guardar Linea</button>
+        </div>
+    </form> <br> <br>
+
+    <div class="button">
+        <a th:href="@{/linPedido}">
+            <button style="background-color: #555555">Volver a la lista de lineas</button>
+        </a>
+    </div>
+</div>
 
 </body>
 </html>

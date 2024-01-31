@@ -81,3 +81,9 @@ w
 G.idea/sonarlint/issuestore/b/1/b11e2eadcec2462332c1ac3387d875a6c8e9a754,5/1/51f74e09c0543f344567d99bc900fe08e39f28d3
 l
 <src/main/java/com/example/demo/models/entities/Producto.java,a/7/a7367219f86a68f08d8fd865cf11a697bb7cefbd
+q
+Asrc/main/java/com/example/demo/controller/ProductoController.java,4/d/4d687a462d3616e2f29d874a638e7165077a5175
+w
+G.idea/sonarlint/issuestore/4/d/4d687a462d3616e2f29d874a638e7165077a5175,9/0/901f9a23c87a6ba739b1564ce48779ccca2cced2
+
+Q.idea/sonarlint/securityhotspotstore/4/d/4d687a462d3616e2f29d874a638e7165077a5175,6/2/623a5e545a01b44e0f1a541ba628144cb1942232
