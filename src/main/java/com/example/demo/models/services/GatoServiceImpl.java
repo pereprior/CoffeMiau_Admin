@@ -35,6 +35,12 @@ public class GatoServiceImpl implements IGatoService {
     }
 
     @Override
+    @Transactional(readOnly= true)
+    public List<GatoAdoptado> findAllGatosAdoptados() {
+        return (List<GatoAdoptado>) gatoDao.findAllGatosAdoptados();
+    }
+
+    @Override
     @Transactional
     public void save(Gato gato) {
         gatoDao.save(gato);

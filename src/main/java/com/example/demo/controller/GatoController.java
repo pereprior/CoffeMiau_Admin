@@ -28,6 +28,13 @@ public class GatoController {
         return "list_gatos";
     }
 
+    @GetMapping("/listGatosAdoptados")
+    public String listGatosAdoptados(Model model) {
+        List<GatoAdoptado> gatosAdoptados = gatoService.findAllGatosAdoptados();
+        model.addAttribute("gatos", gatosAdoptados);
+        return "list_adoptados";
+    }
+
     @GetMapping("/gatos/formForAddGato")
     public String formForAddGato(Model model) {
         Gato gato = new Gato();
