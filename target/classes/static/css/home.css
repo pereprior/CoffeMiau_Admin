@@ -35,3 +35,11 @@ table {
     margin: 0 auto;
     align-content: center;
 }
+
+.logo {
+    width: 60px;
+    height: auto;
+    position: absolute;
+    left: 20px;
+    transform: translateY(-50%);
+}
