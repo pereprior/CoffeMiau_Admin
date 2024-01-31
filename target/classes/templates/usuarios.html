@@ -21,6 +21,7 @@
                 <th>Nombre</th>
                 <th>Email</th>
                 <th>Teléfono</th>
+                <th>Rol</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -30,6 +31,7 @@
                 <td th:text="${usuario.nombre}"></td>
                 <td th:text="${usuario.email}"></td>
                 <td th:text="${usuario.telefono}"></td>
+                <td th:text="${usuario.rol}"></td>
                 <td>
                     <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}">
                         <button>Editar</button>
