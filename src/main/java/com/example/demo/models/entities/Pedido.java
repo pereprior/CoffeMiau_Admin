@@ -19,7 +19,7 @@ public class Pedido {
     @JoinColumn(name = "id_usuario")
     private Usuario cliente;
 
-    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "pedido", cascade = CascadeType.ALL)
     private List<LinPedido> linPedido;
 
     public void setId(Long id) {

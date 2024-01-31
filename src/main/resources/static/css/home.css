@@ -41,5 +41,6 @@ table {
     height: auto;
     position: absolute;
     left: 20px;
+    top: 40px;
     transform: translateY(-50%);
 }
