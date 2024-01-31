@@ -60,6 +60,9 @@
 
     <div>
         <h2>Editar Pedido</h2>
+        <div th:if="${error}" style="color: red;">
+            <p th:text="${error}"></p>
+        </div>
 
         <form th:action="@{/pedidos/edit}" th:object="${pedido}" method="post">
             <input type="hidden" th:field="*{id}"/>
