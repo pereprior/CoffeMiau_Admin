@@ -12,10 +12,7 @@
         <label>Nombre: <input type="text" th:field="*{nombre}" required></label><br>
         <label>Email: <input type="email" th:field="*{email}" required></label><br>
         <label>Teléfono: <input type="text" th:field="*{telefono}" required></label><br>
-        <button type="submit">Guardar Usuario</button>
-    </form>
-
-    <a th:href="@{/usuarios}">Volver a la lista de usuarios</a>
-
-</body>
-</html>
+        <label>Rol:
+            <select th:field="*{rol}" required>
+                <option value="ADMIN">Administrador</option>
+                <opt
