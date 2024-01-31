@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulario de Adopción</title>
+</head>
+<body>
+
+<h2>Formulario de Adopción</h2>
+<form th:object="${gato}" th:action="@{/gatos/adoptar}" method="post">
+    <input type="hidden" th:field="*{idGato}" />
+    <label>ID Gato: </label><span th:text="*{idGato}"></span><br/>
+    <label>Nombre Gato: </label><span th:text="*{nombre}"></span><br/>
+    <label>Foto: </label><img th:src="${gato_adoptado.foto}" alt="Foto del gato" /><br/>
+    <label>Color: </label><span th:text="*{color}"></span><br/>
+    <label>Raza: </label><span th:text="*{raza}"></span><br/>
+    <label>Caracter: </label><span th:text="*{caracter}"></span><br/>
+    <label>Información Médica: </label><span th:text="*{informacionMedica}"></span><br/>
+    <label>Enfermedades: </label><span th:text="*{enfermedades}"></span><br/>
+    <label>Castrado: </label><span th:text="*{castrado} ? 'Sí' : 'No'"></span><br/>
+
+    <label for="clienteId">Seleccionar Cliente:</label>
+    <select id="clienteId" name="clienteId">
+        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+    </select>
+
+<!--    <br>-->
+<!--    <label for="fechaAdopcion">Fecha de Adopción:</label>-->
+<!--    <input type="date" id="fechaAdopcion" name="fechaAdopcion" th:field="*{fechaAdopcion}" />-->
+<!--    <br>-->
+
+    <input type="submit" value="Adoptar">
+
+    <input type="button" value="Volver atrás" onclick="window.location='/gatos/listGatos'" />
+
+</form>
+
+</body>
+</html>
