@@ -1,8 +1,10 @@
 package com.example.demo.models.services;
 
 import com.example.demo.models.dao.IGatoDao;
+import com.example.demo.models.dao.IUsuarioDao;
 import com.example.demo.models.entities.Gato;
 import com.example.demo.models.entities.GatoAdoptado;
+import com.example.demo.models.entities.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +18,10 @@ import java.util.Optional;
 public class GatoServiceImpl implements IGatoService {
     @Autowired
     private IGatoDao gatoDao;
+
+    @Autowired
+    private IUsuarioDao usuarioDao;
+
     @Override
     @Transactional(readOnly= true)
     public List<Gato> findAll() {
@@ -48,9 +54,9 @@ public class GatoServiceImpl implements IGatoService {
 
     @Override
     @Transactional
-    public void adoptarGato(Long idGato) {
-        if (idGato == null) {
-            throw new IllegalArgumentException("El ID de gato no puede ser nulo");
+    public void adoptarGato(Long idGato, Long idCliente) {
+        if (idGato == null || idCliente == null) {
+            throw new IllegalArgumentException("Los IDs de gato y cliente no pueden ser nulos");
         }
 
         Optional<Gato> optionalGato = gatoDao.findById(idGato);
@@ -65,10 +71,20 @@ public class GatoServiceImpl implements IGatoService {
             gatoAdoptado.setColor(gato.getColor());
             gatoAdoptado.setRaza(gato.getRaza());
             gatoAdoptado.setCaracter(gato.getCaracter());
-            gatoAdoptado.setInformacionMedica(gato.getInformacionMedica() != null ? gato.getInformacionMedica() : "Sin informacion medica");
+            gatoAdoptado.setInformacionMedica(gato.getInformacionMedica() != null ? gato.getInformacionMedica() : "Sin información médica");
             gatoAdoptado.setEnfermedades(gato.getEnfermedades() != null ? gato.getEnfermedades() : "Sin enfermedades");
             gatoAdoptado.setCastrado(gato.getCastrado() != null ? gato.getCastrado() : false);
             gatoAdoptado.setFechaAdopcion(LocalDate.now());
+
+            gatoAdoptado.setIdPropietario(idCliente);
+
+            Optional<Usuario> optionalPropietario = usuarioDao.findById(idCliente);
+            if (optionalPropietario.isPresent()) {
+                Usuario propietario = optionalPropietario.get();
+                gatoAdoptado.setNombrePropietario(propietario.getNombre());
+            } else {
+                throw new RuntimeException("Propietario no encontrado con ID: " + idCliente);
+            }
 
             gatoDao.save(gatoAdoptado);
             gatoDao.delete(gato);
@@ -76,74 +92,4 @@ public class GatoServiceImpl implements IGatoService {
             throw new RuntimeException("Gato no encontrado con ID: " + idGato);
         }
     }
-
-//    @Override
-//    @Transactional
-//    public void adoptarGato(Long idGato) {
-//        if (idGato == null) {
-//            throw new IllegalArgumentException("El ID de gato no puede ser nulo");
-//        }
-//
-//        Optional<Gato> optionalGato = gatoDao.findById(idGato);
-//
-//        if (optionalGato.isPresent()) {
-//            Gato gato = optionalGato.get();
-//            System.out.println(gato.getNombre());
-//            System.out.println(gato.getIdGato());
-//            System.out.println(gato.getCastrado());
-//            System.out.println(gato.getFoto());
-//            System.out.println("Informacion Medica del Gato Original: " + gato.getInformacionMedica());
-//            System.out.println("Enfermedades del Gato Original: " + gato.getEnfermedades());
-//
-//
-//            // Validar que el ID de propietario no sea nulo
-////            if (idPropietario == null) {
-////                throw new IllegalArgumentException("El ID de propietario no puede ser nulo");
-////            }
-//
-//            GatoAdoptado gatoAdoptado = new GatoAdoptado();
-//            gatoAdoptado.setIdGato(gato.getIdGato());
-//            gatoAdoptado.setNombre(gato.getNombre());
-//            gatoAdoptado.setFoto(gato.getFoto());
-//            gatoAdoptado.setColor(gato.getColor());
-//            gatoAdoptado.setRaza(gato.getRaza());
-//            gatoAdoptado.setCaracter(gato.getCaracter());
-//            gatoAdoptado.setInformacionMedica(gato.getInformacionMedica() != null ? gato.getInformacionMedica() : "Sin informacion medica");
-//            gatoAdoptado.setEnfermedades(gato.getEnfermedades() != null ? gato.getEnfermedades() : "Sin enfermedades");
-//            gatoAdoptado.setCastrado(gato.getCastrado() != null ? gato.getCastrado() : false);
-//            gatoAdoptado.setFechaAdopcion(LocalDate.now());
-//
-//            gatoDao.save(gatoAdoptado);
-//            System.out.println(gato.getNombre());
-//            System.out.println(gato.getIdGato());
-//            System.out.println(gato.getCastrado());
-//            System.out.println(gato.getFoto());
-//            System.out.println("Informacion Medica del Gato Original: " + gato.getInformacionMedica());
-//            System.out.println("Enfermedades del Gato Original: " + gato.getEnfermedades());
-//            System.out.println(gato.getNombre());
-//            System.out.println(gato.getIdGato());
-//            System.out.println(gato.getCastrado());
-//            System.out.println(gato.getFoto());
-//            System.out.println("Informacion Medica del Gato Original: " + gato.getInformacionMedica());
-//            System.out.println("Enfermedades del Gato Original: " + gato.getEnfermedades());
-//            System.out.println(gato.getNombre());
-//            System.out.println(gato.getIdGato());
-//            System.out.println(gato.getCastrado());
-//            System.out.println(gato.getFoto());
-//            System.out.println("Informacion Medica del Gato Original: " + gato.getInformacionMedica());
-//            System.out.println("Enfermedades del Gato Original: " + gato.getEnfermedades());
-//            System.out.println(gato.getNombre());
-//            System.out.println(gato.getIdGato());
-//            System.out.println(gato.getCastrado());
-//            System.out.println(gato.getFoto());
-//            System.out.println("Informacion Medica del Gato Original: " + gato.getInformacionMedica());
-//            System.out.println("Enfermedades del Gato Original: " + gato.getEnfermedades());
-//
-//
-//            gatoDao.delete(gato);
-//
-//        } else {
-//            throw new RuntimeException("Gato no encontrado con ID: " + idGato);
-//        }
-//    }
 }

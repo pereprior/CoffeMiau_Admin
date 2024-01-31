@@ -21,17 +21,11 @@
 
     <label for="clienteId">Seleccionar Cliente:</label>
     <select id="clienteId" name="clienteId">
-        <option th:each="cliente : ${clientes}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+        <option th:each="cliente : ${usuarios}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
     </select>
-
-<!--    <br>-->
-<!--    <label for="fechaAdopcion">Fecha de Adopción:</label>-->
-<!--    <input type="date" id="fechaAdopcion" name="fechaAdopcion" th:field="*{fechaAdopcion}" />-->
-<!--    <br>-->
-
     <input type="submit" value="Adoptar">
 
-    <input type="button" value="Volver atrás" onclick="window.location='/gatos/listGatos'" />
+    <input type="button" value="Volver atrás" onclick="window.location='/listGatos'" />
 
 </form>
 

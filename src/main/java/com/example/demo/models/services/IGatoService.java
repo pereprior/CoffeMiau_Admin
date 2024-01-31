@@ -17,6 +17,6 @@ public interface IGatoService {
 
     public void delete(Gato gato);
 
-    void adoptarGato(Long idGato);
-
+    @Transactional
+    void adoptarGato(Long idGato, Long idCliente);
 }

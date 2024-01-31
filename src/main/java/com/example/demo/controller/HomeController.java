@@ -12,4 +12,10 @@ public class HomeController {
         model.addAttribute("nombre",nombre);
         return "home";
     }
+
+    @GetMapping("/systechsolutions")
+    public String systechsolutions(@RequestParam(name = "systechsolutions", required = true, defaultValue = "Pere") String nombre, Model model) {
+        model.addAttribute("systechsolutions",nombre);
+        return "systechsolutions";
+    }
 }

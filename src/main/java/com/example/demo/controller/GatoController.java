@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.models.entities.Gato;
 import com.example.demo.models.entities.GatoAdoptado;
+import com.example.demo.models.entities.Usuario;
 import com.example.demo.models.services.IGatoService;
+import com.example.demo.models.services.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,11 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/gatos")
 public class GatoController {
 
     @Autowired
     private IGatoService gatoService;
+
+    @Autowired
+    private IUsuarioService usuarioService;
 
     @GetMapping("/listGatos")
     public String listGatos(Model model) {
@@ -24,49 +28,63 @@ public class GatoController {
         return "list_gatos";
     }
 
-    @GetMapping("/formForAddGato")
+    @GetMapping("/gatos/formForAddGato")
     public String formForAddGato(Model model) {
         Gato gato = new Gato();
         model.addAttribute("gato", gato);
         return "form_gato";
     }
 
-    @PostMapping("/saveGato")
+    @PostMapping("/gatos/saveGato")
     public String saveGato(@ModelAttribute("gato") Gato gato) {
         gatoService.save(gato);
-        return "redirect:/gatos/listGatos";
+        return "redirect:/listGatos";
     }
 
-    @GetMapping("/formForUpdateGato")
+    @GetMapping("/gatos/formForUpdateGato")
     public String formForUpdateGato(@RequestParam("gatoId") Long id, Model model) {
         Gato gato = gatoService.findById(id);
         model.addAttribute("gato", gato);
         return "form_gato";
     }
 
-    @GetMapping("/deleteGato")
+    @GetMapping("/gatos/deleteGato")
     public String deleteGato(@RequestParam("gatoId") Long id) {
         Gato gato = gatoService.findById(id);
         gatoService.delete(gato);
-        return "redirect:/gatos/listGatos";
+        return "redirect:/listGatos";
     }
 
-    @GetMapping("/formForAdopcion")
+    @GetMapping("/gatos/formForAdopcion")
     public String formForAdopcion(@RequestParam("gatoId") Long id, Model model) {
         Gato gato = gatoService.findById(id);
+        List<Usuario> usuarios = usuarioService.findAll();
+
         model.addAttribute("gato", gato);
+        model.addAttribute("usuarios", usuarios);
         model.addAttribute("gato_adoptado", new GatoAdoptado());
+
         return "formulario_adopcion";
     }
 
-    @PostMapping("/adoptar")
-    public String adoptarGato(@ModelAttribute("gato_adoptado") GatoAdoptado gatoParaAdopcion) {
+    @PostMapping("gatos/adoptar")
+    public String adoptarGato(@ModelAttribute("gato_adoptado") GatoAdoptado gatoParaAdopcion,
+                              @RequestParam("clienteId") Long clienteId) {
         try {
-            gatoService.adoptarGato(gatoParaAdopcion.getIdGato());
-            return "redirect:/gatos/listGatos";
+            Usuario cliente = usuarioService.findById(clienteId);
+
+            if (cliente != null) {
+                gatoParaAdopcion.setIdPropietario(cliente.getId());
+                gatoParaAdopcion.setNombrePropietario(cliente.getNombre());
+
+                gatoService.adoptarGato(gatoParaAdopcion.getIdGato(), cliente.getId());
+                return "redirect:/listGatos";
+            } else {
+                return "redirect:/listGatos";
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return "redirect:/gatos/listGatos";
+            return "redirect:/listGatos";
         }
     }
 }
