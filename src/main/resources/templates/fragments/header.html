@@ -7,8 +7,11 @@
 </head>
 
 <body>
-<header>
-    <h1>Coffee Miau</h1>
+<header class="header">
+    <div class="container">
+        <img th:src="@{/images/logo.jpg}" alt="CoffeeMiau Logo" class="logo">
+        <h1>Coffee Miau</h1>
+    </div>
     <nav>
         <a th:href="@{/usuarios}">Usuarios</a>
         <a th:href="@{/pedidos}">Pedidos</a>

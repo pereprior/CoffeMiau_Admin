@@ -23,6 +23,9 @@ public class Usuario {
     @Column(name = "telefono")
     private int telefono;
 
+    @Column(name = "rol")
+    private String rol;
+
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
     private List<Pedido> pedidos;
 
@@ -67,5 +70,13 @@ public class Usuario {
 
     public void setPedidos(List<Pedido> pedidos) {
         this.pedidos = pedidos;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
+
+    public String getRol() {
+        return rol;
     }
 }
