@@ -73,6 +73,12 @@
         <input type="number" id="cantidad" name="cantidad" th:field="*{cantidad}" required>
         <br>
 
+        <label for="pedido">Pedido:</label>
+        <select id="pedido" name="pedido.id" th:field="*{pedido}" required>
+            <option th:each="pedido : ${pedidos}" th:value="${pedido.id}" th:text="${pedido.id}"></option>
+        </select>
+        <br>
+
         <div class="button">
             <button type="submit">Guardar Linea</button>
         </div>

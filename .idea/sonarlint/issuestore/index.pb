@@ -13,3 +13,5 @@ Q.idea/sonarlint/securityhotspotstore/4/d/4d687a462d3616e2f29d874a638e7165077a51
 -.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
 S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+m
+=src/main/java/com/example/demo/models/entities/LinPedido.java,5/f/5f3e4b65516bef8e7850e26eaecfc0775e01babd

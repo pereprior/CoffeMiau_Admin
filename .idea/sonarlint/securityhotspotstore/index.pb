@@ -87,3 +87,5 @@ w
 G.idea/sonarlint/issuestore/4/d/4d687a462d3616e2f29d874a638e7165077a5175,9/0/901f9a23c87a6ba739b1564ce48779ccca2cced2
 Å
 Q.idea/sonarlint/securityhotspotstore/4/d/4d687a462d3616e2f29d874a638e7165077a5175,6/2/623a5e545a01b44e0f1a541ba628144cb1942232
+m
+=src/main/java/com/example/demo/models/entities/LinPedido.java,5/f/5f3e4b65516bef8e7850e26eaecfc0775e01babd
