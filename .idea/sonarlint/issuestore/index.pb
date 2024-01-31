@@ -15,3 +15,5 @@ S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
 m
 =src/main/java/com/example/demo/models/entities/LinPedido.java,5/f/5f3e4b65516bef8e7850e26eaecfc0775e01babd
+j
+:src/main/java/com/example/demo/models/entities/Pedido.java,4/1/419c03dc32e2234c2a4f7ad4b7d2992416055ef2
