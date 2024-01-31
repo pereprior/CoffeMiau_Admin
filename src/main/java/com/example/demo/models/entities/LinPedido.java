@@ -12,7 +12,7 @@ public class LinPedido {
     private Long id_lin_pedido;
 
     @ManyToOne
-    @JoinColumn(name = "id_pedido", nullable = false)  // Relación con Pedido
+    @JoinColumn(name = "id_pedido", nullable = false)
     private Pedido pedido;
 
     @ManyToOne
@@ -44,5 +44,13 @@ public class LinPedido {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

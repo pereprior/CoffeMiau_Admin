@@ -22,6 +22,7 @@
         <th>ID</th>
         <th>ID Producto</th>
         <th>Cantidad</th>
+        <th>ID Pedido</th>
         <th>Acciones</th>
     </tr>
     </thead>
@@ -30,6 +31,7 @@
         <td th:text="${linPedido.id_lin_pedido}"></td>
         <td th:text="${linPedido.producto.id_producto}"></td>
         <td th:text="${linPedido.cantidad}"></td>
+        <td th:text="${linPedido.pedido.id}"></td>
         <td>
             <a th:href="@{/linPedido/{linPedidoId}(linPedidoId=${linPedido.id_lin_pedido})}">
                 <button>Editar</button>
