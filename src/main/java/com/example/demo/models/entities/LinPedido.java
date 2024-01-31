@@ -7,9 +7,13 @@ import jakarta.persistence.*;
 public class LinPedido {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_lin_pedido")
     private Long id_lin_pedido;
+
+    @ManyToOne
+    @JoinColumn(name = "id_pedido", nullable = false)
+    private Pedido pedido;
 
     @ManyToOne
     @JoinColumn(name = "id_producto", nullable = false)
@@ -40,5 +44,13 @@ public class LinPedido {
 
     public void setCantidad(Integer cantidad) {
         this.cantidad = cantidad;
+    }
+
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
     }
 }

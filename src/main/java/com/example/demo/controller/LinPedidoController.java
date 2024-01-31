@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.models.entities.LinPedido;
 import com.example.demo.models.services.LinPedidoService;
+import com.example.demo.models.services.PedidoService;
 import com.example.demo.models.services.ProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +16,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class LinPedidoController {
     @Autowired
     private LinPedidoService linPedidoService;
+
     @Autowired
     private ProductoService productoService;
+
+    @Autowired
+    private PedidoService pedidoService;
 
     @GetMapping("/linPedido")
     public String showLinPedidos(Model model){
@@ -28,7 +33,7 @@ public class LinPedidoController {
     @GetMapping("/linPedido/save")
     public String createLinPedido(Model model) {
         model.addAttribute("linpedido", new LinPedido());
-        model.addAttribute("currentPage", "linpedido");
+        model.addAttribute("pedidos", pedidoService.findAll());
         model.addAttribute("productos",productoService.findAll());
         return "save_linpedido";
     }
@@ -44,6 +49,7 @@ public class LinPedidoController {
         LinPedido linPedido = linPedidoService.findById(linPedidoId);
         model.addAttribute("linpedido", linPedido);
         model.addAttribute("productos",productoService.findAll());
+        model.addAttribute("pedidos", pedidoService.findAll());
         return "edit_linpedido";
     }
 
