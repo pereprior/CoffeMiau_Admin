@@ -45,9 +45,16 @@ public class PedidoController {
     }
 
     @PostMapping("/pedidos/add")
-    public String crearNuevoPedido(@ModelAttribute Pedido pedido) {
-        pedidoService.save(pedido);
-        return "redirect:/pedidos";
+    public String crearNuevoPedido(@ModelAttribute Pedido pedido, Model model) {
+        if(pedido.getCliente() == null) {
+            model.addAttribute("error", "El usuario seleccionado no existe.");
+            List<Usuario> listaUsuarios = usuarioService.findAll();
+            model.addAttribute("usuarios", listaUsuarios);
+            return "add_pedido";
+        } else {
+            pedidoService.save(pedido);
+            return "redirect:/pedidos";
+        }
     }
 
     @PostMapping("/pedidos/delete/{id}")
@@ -71,14 +78,17 @@ public class PedidoController {
     }
 
     @PostMapping("/pedidos/edit")
-    public String actualizarPedido(@ModelAttribute Pedido pedido) {
-        if (pedido == null) {
+    public String actualizarPedido(@ModelAttribute Pedido pedido, Model model) {
+        if (pedido.getCliente() == null) {
+            model.addAttribute("error", "El usuario seleccionado no existe.");
+            List<Usuario> listaUsuarios = usuarioService.findAll();
+            model.addAttribute("usuarios", listaUsuarios);
+            return "edit_pedido";
+        } else {
+            pedidoService.save(pedido);
+
             return "redirect:/pedidos";
         }
-
-        pedidoService.save(pedido);
-
-        return "redirect:/pedidos";
     }
 
 }

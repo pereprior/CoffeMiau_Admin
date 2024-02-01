@@ -12,7 +12,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 public class SecurityConfig {
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager(){
+    public InMemoryUserDetailsManager userDetailsManager() {
 
         UserDetails clientTest = User.builder()
                 .username("client")
@@ -29,7 +29,7 @@ public class SecurityConfig {
         UserDetails adminTest = User.builder()
                 .username("admin")
                 .password("{noop}admin")
-                .roles("EMPLEADO","ADMINISTRADOR")
+                .roles("EMPLEADO", "ADMINISTRADOR")
                 .build();
 
         return new InMemoryUserDetailsManager(clientTest, employeeTest, adminTest);
@@ -38,18 +38,19 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
-                configurer
-                        .anyRequest().authenticated()
-        ).formLogin(form ->
-                form
-                        .loginPage("/showLoginPage")
-                        .loginProcessingUrl("/authenticateTheUser")
-                        .permitAll()
-        ).logout(
-                LogoutConfigurer::permitAll
-        ).exceptionHandling(configurer ->
-                configurer.accessDeniedPage("/access-denied")
-        );
+                        configurer
+                                .anyRequest().authenticated()
+                ).formLogin(form ->
+                        form
+                                .loginPage("/showLoginPage")
+                                .loginProcessingUrl("/authenticateTheUser")
+                                .permitAll()
+                ).logout(
+                        LogoutConfigurer::permitAll
+                ).exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied")
+                )
+                .csrf().disable();
 
         return http.build();
     }
