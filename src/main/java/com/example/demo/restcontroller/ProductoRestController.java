@@ -1,4 +1,4 @@
-package com.example.demo.controller;
+package com.example.demo.restcontroller;
 
 import com.example.demo.models.entities.Producto;
 import com.example.demo.models.services.ProductoService;

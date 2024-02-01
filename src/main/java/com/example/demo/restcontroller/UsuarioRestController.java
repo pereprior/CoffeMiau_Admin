@@ -1,9 +1,6 @@
-package com.example.demo.controller;
+package com.example.demo.restcontroller;
 
-import com.example.demo.models.entities.Pedido;
-import com.example.demo.models.entities.PedidoDTO;
 import com.example.demo.models.entities.Usuario;
-import com.example.demo.models.entities.UsuarioDTO;
 import com.example.demo.models.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/usuarios")
@@ -21,34 +17,16 @@ public class UsuarioRestController {
     private UsuarioService usuarioService;
 
     @GetMapping
-    public ResponseEntity<List<UsuarioDTO>> getAllUsuarios() {
+    public ResponseEntity<List<Usuario>> getAllUsuarios() {
         List<Usuario> usuarios = usuarioService.findAll();
-
-        List<UsuarioDTO> usuarioDTO = usuarios.stream()
-                .map(this::convertToDTO)
-                .toList();
-        return new ResponseEntity<>(usuarioDTO, HttpStatus.OK);
-    }
-
-    private UsuarioDTO convertToDTO(Usuario usuario) {
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setId(usuario.getId());
-        usuarioDTO.setNombre(usuario.getNombre());
-        usuarioDTO.setEmail(usuario.getEmail());
-        usuarioDTO.setTelefono(usuario.getTelefono());
-        usuarioDTO.setRol(usuario.getRol());
-        usuarioDTO.setUrl("/api/usuarios/" + usuario.getId());
-
-        return usuarioDTO;
-
+        return new ResponseEntity<>(usuarios, HttpStatus.OK);
     }
 
     @GetMapping("/{usuarioId}")
-    public ResponseEntity<UsuarioDTO> getUsuarioById(@PathVariable Long usuarioId) {
+    public ResponseEntity<Usuario> getUsuarioById(@PathVariable Long usuarioId) {
         Usuario usuario = usuarioService.findById(usuarioId);
         if (usuario != null) {
-            UsuarioDTO usuarioDTO = convertToDTO(usuario);
-            return new ResponseEntity<>(usuarioDTO, HttpStatus.OK);
+            return new ResponseEntity<>(usuario, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.restcontroller;
 
 import com.example.demo.models.entities.Pedido;
-import com.example.demo.models.entities.PedidoDTO;
-import com.example.demo.models.entities.UsuarioDTO;
+import com.example.demo.models.dto.PedidoDTO;
+import com.example.demo.models.dto.UsuarioDTO;
 import com.example.demo.models.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -20,38 +20,17 @@ public class PedidoRestController {
     private PedidoService pedidoService;
 
     @GetMapping
-    public ResponseEntity<List<PedidoDTO>> getAllPedidos() {
+    public ResponseEntity<List<Pedido>> getAllPedidos() {
         List<Pedido> pedidos = pedidoService.findAll();
 
-        List<PedidoDTO> pedidosDTO = pedidos.stream()
-                .map(this::convertToDTO)
-                .collect(Collectors.toList());
-
-        return new ResponseEntity<>(pedidosDTO, HttpStatus.OK);
-    }
-
-    private PedidoDTO convertToDTO(Pedido pedido) {
-        PedidoDTO pedidoDTO = new PedidoDTO();
-        pedidoDTO.setIdPedido(pedido.getId());
-        pedidoDTO.setFecha(pedido.getFecha());
-        pedidoDTO.setUrl("/api/pedidos/" + pedido.getId());
-
-        UsuarioDTO usuarioDTO = new UsuarioDTO();
-        usuarioDTO.setId(pedido.getCliente().getId());
-        usuarioDTO.setUrl("/api/usuarios/" + pedido.getCliente().getId());
-
-
-        pedidoDTO.setUsuarioDTO(usuarioDTO);
-
-        return pedidoDTO;
+        return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
     @GetMapping("/{pedidoId}")
-    public ResponseEntity<PedidoDTO> getPedidoById(@PathVariable Long pedidoId) {
+    public ResponseEntity<Pedido> getPedidoById(@PathVariable Long pedidoId) {
         Pedido pedido = pedidoService.findById(pedidoId);
         if (pedido != null) {
-            PedidoDTO pedidoDTO = convertToDTO(pedido);
-            return new ResponseEntity<>(pedidoDTO, HttpStatus.OK);
+            return new ResponseEntity<>(pedido, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
