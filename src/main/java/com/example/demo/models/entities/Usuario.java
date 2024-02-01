@@ -1,5 +1,6 @@
 package com.example.demo.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
 
@@ -27,6 +28,7 @@ public class Usuario {
     private String rol;
 
     @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<Pedido> pedidos;
 
     /*@Column(name = "gatos")

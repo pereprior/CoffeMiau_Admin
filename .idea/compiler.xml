@@ -8,6 +8,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="demo" />
         <module name="Spring_Product2" />
+        <module name="Equipo1-Reto3-Spring" />
       </profile>
     </annotationProcessing>
   </component>
