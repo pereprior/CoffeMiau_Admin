@@ -11,7 +11,9 @@
     <input type="hidden" th:field="*{idGato}" />
     <label>ID Gato: </label><span th:text="*{idGato}"></span><br/>
     <label>Nombre Gato: </label><span th:text="*{nombre}"></span><br/>
-    <label>Foto: </label><img th:src="${gato_adoptado.foto}" alt="Foto del gato" /><br/>
+    <label>Foto: </label>
+    <img th:if="${gato.foto != null}" th:src="${gato.foto}" alt="Foto del gato" style="width: 200px; height: 200px;"/>
+    <br/>
     <label>Color: </label><span th:text="*{color}"></span><br/>
     <label>Raza: </label><span th:text="*{raza}"></span><br/>
     <label>Caracter: </label><span th:text="*{caracter}"></span><br/>

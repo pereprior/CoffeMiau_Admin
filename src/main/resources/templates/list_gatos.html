@@ -10,12 +10,16 @@
 <header th:replace="fragments/header::header"></header>
 
 <h2>Lista de Gatos</h2>
+<a th:href="@{/gatos/formForAddGato}">
+    <button>Agregar Gato</button>
+</a>
+<br><br>
 <table border="1">
     <tr>
         <th>ID</th>
         <th>Nombre</th>
-        <th>Raza</th>
         <th>Foto</th>
+        <th>Raza</th>
         <th>Información Médica</th>
         <th>Enfermedades</th>
         <th>Castrado</th>
@@ -24,21 +28,28 @@
     <tr th:each="gato : ${gatos}">
         <td th:text="${gato.idGato}"></td>
         <td th:text="${gato.nombre}"></td>
-        <td th:text="${gato.foto}"></td>
+        <td>
+        <img th:if="${gato.foto != null}" th:src="${gato.foto}" alt="Foto del gato" style="width: 200px; height: 200px;"/>
+        </td>
         <td th:text="${gato.raza}"></td>
         <td th:text="${gato.informacionMedica}"></td>
         <td th:text="${gato.enfermedades}"></td>
         <td th:text="${gato.castrado}"></td>
         <td>
-            <a th:href="@{/gatos/formForUpdateGato(gatoId=${gato.idGato})}">Editar</a>
-            |
-            <a th:href="@{/gatos/deleteGato(gatoId=${gato.idGato})}">Eliminar</a>
+            <a th:href="@{/gatos/formForUpdateGato(gatoId=${gato.idGato})}">
+                <button>Editar</button>
+            </a>
 
-            <a th:href="@{/gatos/formForAdopcion(gatoId=${gato.idGato})}">Adoptar</a>
+            <a th:href="@{/gatos/deleteGato(gatoId=${gato.idGato})}">
+                <button>Eliminar</button>
+            </a>
+
+            <a th:href="@{/gatos/formForAdopcion(gatoId=${gato.idGato})}">
+                <button>Adoptar</button>
+            </a>
         </td>
     </tr>
 </table>
-<br/>
-<a th:href="@{/gatos/formForAddGato}">Agregar Gato</a>
+
 </body>
 </html>
