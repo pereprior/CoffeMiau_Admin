@@ -7,7 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 public interface IGatoService {
-    public List<Gato> findAll();
+    List<Gato> findAll();
 
     @Transactional(readOnly= true)
     List<Gato> findAllGatos();
@@ -16,11 +16,11 @@ public interface IGatoService {
     List<GatoAdoptado> findAllGatosAdoptados();
 
 
-    public void save(Gato gato);
+    void save(Gato gato);
 
-    public Gato findById(Long id);
+    Gato findById(Long id);
 
-    public void delete(Gato gato);
+    void delete(Gato gato);
 
     @Transactional
     void adoptarGato(Long idGato, Long idCliente);
