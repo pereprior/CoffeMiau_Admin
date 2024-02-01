@@ -27,3 +27,12 @@ h
 8src/main/java/com/example/demo/models/entities/Gato.java,d/8/d862c1d74c336ff76e66b58140da48394da1b2d4
 y
 Isrc/main/java/com/example/demo/restcontroller/ProductoRestController.java,f/a/fa816bae47b228f67bf3fc30f2f09d3f5a555dd2
+x
+Hsrc/main/java/com/example/demo/restcontroller/UsuarioRestController.java,4/8/48ad1aeed894cb6f4c7ebe5b396f6e267cbc253a
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+k
+;src/main/java/com/example/demo/security/SecurityConfig.java,3/3/3312f75be460a5cbba3b51ed37ecc01e860d2500
+n
+>src/main/java/com/example/demo/controller/LoginController.java,1/6/16097e6262a7614b6e9718820f3b48725c69ccb9

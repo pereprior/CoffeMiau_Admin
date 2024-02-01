@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="UTF-8">
     <title>Lista de Usuarios</title>
@@ -14,7 +16,7 @@
 
 <div class="container mt-3">
     <h2>Lista de Usuarios</h2>
-    <a th:href="@{/usuarios/add}" class="btn btn-primary mb-2">Crear</a>
+    <a th:href="@{/usuarios/add}" class="btn btn-primary mb-2" sec:authorize="hasRole('EMPLEADO')">Crear</a>
 
     <table class="table table-bordered">
         <thead>
@@ -24,7 +26,7 @@
             <th>Email</th>
             <th>Teléfono</th>
             <th>Rol</th>
-            <th>Acciones</th>
+            <th sec:authorize="hasRole('EMPLEADO')">Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -34,7 +36,7 @@
             <td th:text="${usuario.email}"></td>
             <td th:text="${usuario.telefono}"></td>
             <td th:text="${usuario.rol}"></td>
-            <td>
+            <td sec:authorize="hasRole('EMPLEADO')">
                 <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}" class="btn btn-warning btn-sm">Editar</a>
                 <form th:action="@{/usuarios/delete/{id}(id=${usuario.id})}" method="post" onsubmit="return confirm('¿Estás seguro?')">
                     <button type="submit" class="btn btn-danger btn-sm">Borrar</button>

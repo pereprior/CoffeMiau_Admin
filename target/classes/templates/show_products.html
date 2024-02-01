@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +17,7 @@
 
 <div class="container mt-3">
     <h2>Lista de Productos</h2>
-    <a th:href="@{/product/save}" class="btn btn-primary mb-2">Crear</a>
+    <a th:href="@{/product/save}" class="btn btn-primary mb-2" sec:authorize="hasRole('EMPLEADO')">Crear</a>
 
     <table class="table table-bordered">
         <thead>
@@ -23,7 +25,7 @@
             <th>ID</th>
             <th>Nombre</th>
             <th>Precio</th>
-            <th>Acciones</th>
+            <th sec:authorize="hasRole('EMPLEADO')">Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -31,7 +33,7 @@
             <td th:text="${product.id_producto}"></td>
             <td th:text="${product.nombre}"></td>
             <td th:text="${product.precio}"></td>
-            <td>
+            <td sec:authorize="hasRole('EMPLEADO')">
                 <a th:href="@{/product/{productId}(productId=${product.id_producto})}" class="btn btn-warning btn-sm">Editar</a>
                 <form th:action="@{/product/deleteProduct/{productId}(productId=${product.id_producto})}" method="post" onsubmit="return confirm('¿Estás seguro de eliminar este producto?')">
                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>

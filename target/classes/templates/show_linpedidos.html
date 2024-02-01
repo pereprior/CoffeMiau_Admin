@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +17,7 @@
 
 <div class="container mt-3">
     <h2>Lista de Líneas de Pedido</h2>
-    <a th:href="@{/linPedido/save}" class="btn btn-primary mb-2">Crear</a>
+    <a th:href="@{/linPedido/save}" class="btn btn-primary mb-2" sec:authorize="hasRole('EMPLEADO')">Crear</a>
 
     <table class="table table-bordered">
         <thead>
@@ -24,7 +26,7 @@
             <th>ID Producto</th>
             <th>Cantidad</th>
             <th>ID Pedido</th>
-            <th>Acciones</th>
+            <th sec:authorize="hasRole('EMPLEADO')">Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -33,7 +35,7 @@
             <td th:text="${linPedido.producto.id_producto}"></td>
             <td th:text="${linPedido.cantidad}"></td>
             <td th:text="${linPedido.pedido.id}"></td>
-            <td>
+            <td sec:authorize="hasRole('EMPLEADO')">
                 <a th:href="@{/linPedido/{linPedidoId}(linPedidoId=${linPedido.id_lin_pedido})}" class="btn btn-warning btn-sm">Editar</a>
                 <form th:action="@{/linPedido/deleteLinPedido/{linPedidoId}(linPedidoId=${linPedido.id_lin_pedido})}" method="post" onsubmit="return confirm('¿Estás seguro de eliminar esta línea de producto?')">
                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
