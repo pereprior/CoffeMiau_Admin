@@ -3,28 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <title>Lista de Gatos Adoptados</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{css/home.css}">
 </head>
 <body>
 <header th:replace="fragments/header::header"></header>
 
-<h2>Lista de Gatos Adoptados</h2>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>ID Propietario</th>
-        <th>Nombre Propietario</th>
-        <th>Fecha Adopción</th>
-    </tr>
-    <tr th:each="gato : ${gatos}">
-        <td th:text="${gato.idGato}"></td>
-        <td th:text="${gato.nombre}"></td>
-        <td th:text="${gato.idPropietario}"></td>
-        <td th:text="${gato.nombrePropietario}"></td>
-        <td th:text="${#temporals.format(gato.fechaAdopcion, 'dd/MM/yyyy')}"></td>
-    </tr>
-</table>
-<br/>
+<div class="container mt-3">
+    <h2>Lista de Gatos Adoptados</h2>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>ID Propietario</th>
+            <th>Nombre Propietario</th>
+            <th>Fecha Adopción</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="gato : ${gatos}">
+            <td th:text="${gato.idGato}"></td>
+            <td th:text="${gato.nombre}"></td>
+            <td th:text="${gato.idPropietario}"></td>
+            <td th:text="${gato.nombrePropietario}"></td>
+            <td th:text="${#temporals.format(gato.fechaAdopcion, 'dd/MM/yyyy')}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
 </body>
 </html>

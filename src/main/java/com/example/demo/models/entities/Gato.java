@@ -1,5 +1,6 @@
 package com.example.demo.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -20,6 +21,7 @@ public class Gato {
     private String nombre;
 
     @Column(name = "foto_gato")
+    @JsonIgnore
     private String foto;
     @Column(name = "color")
     private String color;

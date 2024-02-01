@@ -3,6 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Gato</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0B3B2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .column {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #9A544C;
+            color: #FEEED5;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FE9553;
+        }
+
+        .button {
+            text-align: center;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
     <script>
         function validarFormulario() {
             var nombre = document.getElementById("nombre").value;
@@ -30,45 +92,48 @@
 </head>
 <body>
 
-<h2>Formulario de Gato</h2>
+<div>
+    <h2>Formulario de Gato</h2>
 
-<form action="/gatos/saveGato" method="post" th:object="${gato}" onsubmit="return validarFormulario()">
-    <input type="hidden" th:field="*{idGato}">
+    <form action="/gatos/saveGato" method="post" th:object="${gato}" onsubmit="return validarFormulario()">
+        <div class="column">
+            <input type="hidden" th:field="*{idGato}">
 
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" th:field="*{nombre}">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" th:field="*{nombre}">
 
-    <label for="foto_gato">Foto:</label>
-    <input type="text" id="foto_gato" name="foto" />
+            <label for="foto_gato">Foto:</label>
+            <input type="text" id="foto_gato" name="foto" th:field="*{foto}" />
 
-    <label for="color">Color:</label>
-    <input type="text" id="color" name="color" th:field="*{color}" />
+            <label for="color">Color:</label>
+            <input type="text" id="color" name="color" th:field="*{color}" />
 
-    <label for="raza">Raza:</label>
-    <input type="text" id="raza" name="raza" th:field="*{raza}" />
+            <label for="raza">Raza:</label>
+            <input type="text" id="raza" name="raza" th:field="*{raza}" />
+        </div>
+        <div class="column">
+            <label for="caracter">Caracter:</label>
+            <input type="text" id="caracter" name="caracter" th:field="*{caracter}" />
 
-    <label for="caracter">Caracter:</label>
-    <input type="text" id="caracter" name="caracter" th:field="*{caracter}" />
+            <label for="informacion_medica">Información Médica:</label>
+            <input type="text" id="informacion_medica" name="informacion_medica" th:field="*{informacionMedica}" />
 
-    <label for="informacion_medica">Información Médica:</label>
-    <input type="text" id="informacion_medica" name="informacion_medica" th:field="*{informacionMedica}" />
+            <label for="enfermedades">Enfermedades:</label>
+            <input type="text" id="enfermedades" name="enfermedades" th:field="*{enfermedades}" />
 
-    <label for="enfermedades">Enfermedades:</label>
-    <input type="text" id="enfermedades" name="enfermedades" th:field="*{enfermedades}" />
+            <label for="castrado" th:align="center">Castrado: <input type="checkbox" id="castrado" name="castrado" th:field="*{castrado}" /></label>
+        </div>
+        <div class="button">
+            <button type="submit" value="Guardar">Guardar Gato</button>
+        </div>
 
-    <label for="castrado">Castrado:</label>
-    <input type="checkbox" id="castrado" name="castrado" th:field="*{castrado}" />
-
-    <br>
-    <input type="submit" value="Guardar">
-
-    <hr>
-    <div>
-        <p>
-            <a th:href="@{/gatos/listGatos}">Volver atrás</a>
-        </p>
-    </div>
-</form>
+        <div class="button">
+            <a th:href="@{/gatos/listGatos}">
+                <button>Volver atrás</button>
+            </a>
+        </div>
+    </form>
+</div>
 
 </body>
 </html>

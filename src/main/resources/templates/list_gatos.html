@@ -1,55 +1,56 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="UTF-8">
     <title>Lista de Gatos</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" th:href="@{css/home.css}">
-
 </head>
 <body>
 <header th:replace="fragments/header::header"></header>
 
-<h2>Lista de Gatos</h2>
-<a th:href="@{/gatos/formForAddGato}">
-    <button>Agregar Gato</button>
-</a>
-<br><br>
-<table border="1">
-    <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Foto</th>
-        <th>Raza</th>
-        <th>Información Médica</th>
-        <th>Enfermedades</th>
-        <th>Castrado</th>
-        <th>Acciones</th>
-    </tr>
-    <tr th:each="gato : ${gatos}">
-        <td th:text="${gato.idGato}"></td>
-        <td th:text="${gato.nombre}"></td>
-        <td>
-        <img th:if="${gato.foto != null}" th:src="${gato.foto}" alt="Foto del gato" style="width: 200px; height: 200px;"/>
-        </td>
-        <td th:text="${gato.raza}"></td>
-        <td th:text="${gato.informacionMedica}"></td>
-        <td th:text="${gato.enfermedades}"></td>
-        <td th:text="${gato.castrado}"></td>
-        <td>
-            <a th:href="@{/gatos/formForUpdateGato(gatoId=${gato.idGato})}">
-                <button>Editar</button>
-            </a>
+<div class="container mt-3">
+    <h2>Lista de Gatos</h2>
+    <a th:href="@{/gatos/formForAddGato}" class="btn btn-primary mb-2" sec:authorize="hasRole('EMPLEADO')">Agregar Gato</a>
 
-            <a th:href="@{/gatos/deleteGato(gatoId=${gato.idGato})}">
-                <button>Eliminar</button>
-            </a>
-
-            <a th:href="@{/gatos/formForAdopcion(gatoId=${gato.idGato})}">
-                <button>Adoptar</button>
-            </a>
-        </td>
-    </tr>
-</table>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Raza</th>
+            <th>Foto</th>
+            <th>Información Médica</th>
+            <th>Enfermedades</th>
+            <th>Castrado</th>
+            <th sec:authorize="hasRole('EMPLEADO')">Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="gato : ${gatos}">
+            <td th:text="${gato.idGato}"></td>
+            <td th:text="${gato.nombre}"></td>
+            <td th:text="${gato.raza}"></td>
+            <td>
+                <img th:if="${gato.foto != null}" th:src="${gato.foto}" alt="Foto del gato" style="width: 200px; height: 200px;"/>
+            </td>
+            <td th:text="${gato.informacionMedica}"></td>
+            <td th:text="${gato.enfermedades}"></td>
+            <td th:text="${gato.castrado}"></td>
+            <td sec:authorize="hasRole('EMPLEADO')">
+                <a th:href="@{/gatos/formForUpdateGato(gatoId=${gato.idGato})}" class="btn btn-warning btn-sm">Editar</a>
+                <a th:href="@{/gatos/deleteGato(gatoId=${gato.idGato})}" class="btn btn-danger btn-sm">Eliminar</a>
+                <a th:href="@{/gatos/formForAdopcion(gatoId=${gato.idGato})}" class="btn btn-success btn-sm">Adoptar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>

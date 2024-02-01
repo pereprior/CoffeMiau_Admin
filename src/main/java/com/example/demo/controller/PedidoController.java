@@ -24,7 +24,6 @@ public class PedidoController {
     @Autowired
     private UsuarioService usuarioService;
 
-
     @Autowired
     private LinPedidoService linPedidoService; //
 

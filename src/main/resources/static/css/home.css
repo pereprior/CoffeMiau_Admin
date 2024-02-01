@@ -1,6 +1,6 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #9A544C;
+    background-color: #FEEDD7;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -28,7 +28,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #ff9900;
+    color: #FE9553;
 }
 
 table {
@@ -50,11 +50,12 @@ h1 {
 }
 
 h2 {
-    color: #FAC3C4;
+    color: #9A544C;
 }
 
 table {
-    border: #D5716F;
+    color: black;
+    border-color: #F0B3B2;
 }
 
 button {
@@ -65,5 +66,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #FE9553;
 }
