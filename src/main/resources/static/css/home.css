@@ -28,7 +28,7 @@ nav a {
 }
 
 nav a:hover {
-    color: #ff9900;
+    color: #FE9553;
 }
 
 table {
@@ -65,5 +65,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #FE9553;
 }

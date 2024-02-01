@@ -1,33 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Adopción</title>
+    <style>
+        h2 {
+            text-align: center;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0B3B2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #9A544C;
+            color: #FEEED5;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FE9553;
+        }
+
+        .button {
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 
-<h2>Formulario de Adopción</h2>
-<form th:object="${gato}" th:action="@{/gatos/adoptar}" method="post">
-    <input type="hidden" th:field="*{idGato}" />
-    <label>ID Gato: </label><span th:text="*{idGato}"></span><br/>
-    <label>Nombre Gato: </label><span th:text="*{nombre}"></span><br/>
-    <label>Foto: </label><img th:src="${gato_adoptado.foto}" alt="Foto del gato" /><br/>
-    <label>Color: </label><span th:text="*{color}"></span><br/>
-    <label>Raza: </label><span th:text="*{raza}"></span><br/>
-    <label>Caracter: </label><span th:text="*{caracter}"></span><br/>
-    <label>Información Médica: </label><span th:text="*{informacionMedica}"></span><br/>
-    <label>Enfermedades: </label><span th:text="*{enfermedades}"></span><br/>
-    <label>Castrado: </label><span th:text="*{castrado} ? 'Sí' : 'No'"></span><br/>
+<div>
+    <h2>Formulario de Adopción</h2>
+    <form th:object="${gato}" th:action="@{/gatos/adoptar}" method="post">
+        <input type="hidden" th:field="*{idGato}" />
+        <label>ID Gato: </label><span th:text="*{idGato}"></span><br/>
+        <label>Nombre Gato: </label><span th:text="*{nombre}"></span><br/>
+        <label>Foto: </label><img th:src="${gato_adoptado.foto}" alt="Foto del gato" /><br/>
+        <label>Color: </label><span th:text="*{color}"></span><br/>
+        <label>Raza: </label><span th:text="*{raza}"></span><br/>
+        <label>Caracter: </label><span th:text="*{caracter}"></span><br/>
+        <label>Información Médica: </label><span th:text="*{informacionMedica}"></span><br/>
+        <label>Enfermedades: </label><span th:text="*{enfermedades}"></span><br/>
+        <label>Castrado: </label><span th:text="*{castrado} ? 'Sí' : 'No'"></span><br/>
 
-    <label for="clienteId">Seleccionar Cliente:</label>
-    <select id="clienteId" name="clienteId">
-        <option th:each="cliente : ${usuarios}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
-    </select>
-    <input type="submit" value="Adoptar">
+        <label for="clienteId">Seleccionar Cliente:</label>
+        <select id="clienteId" name="clienteId">
+            <option th:each="cliente : ${usuarios}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+        </select>
+        <input type="submit" value="Adoptar">
 
-    <input type="button" value="Volver atrás" onclick="window.location='/listGatos'" />
+        <div class="button">
+            <input type="button" value="Volver atrás" onclick="window.location='/listGatos'" />
+        </div>
 
-</form>
+    </form>
+</div>
 
 </body>
 </html>
