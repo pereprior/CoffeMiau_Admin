@@ -6,6 +6,7 @@ import com.example.demo.models.entities.Usuario;
 import com.example.demo.models.services.IGatoService;
 import com.example.demo.models.services.IUsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -29,6 +30,7 @@ public class GatoController {
     }
 
     @GetMapping("/listGatosAdoptados")
+    @Secured("ROLE_EMPLEADO")
     public String listGatosAdoptados(Model model) {
         List<GatoAdoptado> gatosAdoptados = gatoService.findAllGatosAdoptados();
         model.addAttribute("gatos", gatosAdoptados);
@@ -36,6 +38,7 @@ public class GatoController {
     }
 
     @GetMapping("/gatos/formForAddGato")
+    @Secured("ROLE_EMPLEADO")
     public String formForAddGato(Model model) {
         Gato gato = new Gato();
         model.addAttribute("gato", gato);
@@ -43,12 +46,14 @@ public class GatoController {
     }
 
     @PostMapping("/gatos/saveGato")
+    @Secured("ROLE_EMPLEADO")
     public String saveGato(@ModelAttribute("gato") Gato gato) {
         gatoService.save(gato);
         return "redirect:/listGatos";
     }
 
     @GetMapping("/gatos/formForUpdateGato")
+    @Secured("ROLE_EMPLEADO")
     public String formForUpdateGato(@RequestParam("gatoId") Long id, Model model) {
         Gato gato = gatoService.findById(id);
         model.addAttribute("gato", gato);
@@ -56,6 +61,7 @@ public class GatoController {
     }
 
     @GetMapping("/gatos/deleteGato")
+    @Secured("ROLE_ADMIN")
     public String deleteGato(@RequestParam("gatoId") Long id) {
         Gato gato = gatoService.findById(id);
         gatoService.delete(gato);
@@ -63,6 +69,7 @@ public class GatoController {
     }
 
     @GetMapping("/gatos/formForAdopcion")
+    @Secured("ROLE_EMPLEADO")
     public String formForAdopcion(@RequestParam("gatoId") Long id, Model model) {
         Gato gato = gatoService.findById(id);
         List<Usuario> usuarios = usuarioService.findAll();
@@ -75,6 +82,7 @@ public class GatoController {
     }
 
     @PostMapping("gatos/adoptar")
+    @Secured("ROLE_EMPLEADO")
     public String adoptarGato(@ModelAttribute("gato_adoptado") GatoAdoptado gatoParaAdopcion,
                               @RequestParam("clienteId") Long clienteId) {
         try {

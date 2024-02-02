@@ -35,9 +35,6 @@ public class Usuario {
     @JsonIgnore
     private List<Pedido> pedidos;
 
-    /*@Column(name = "gatos")
-    private List<Gato> gatos;*/
-
     public String getNombre() {
         return nombre;
     }
@@ -93,4 +90,5 @@ public class Usuario {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }
