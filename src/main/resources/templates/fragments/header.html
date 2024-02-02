@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="es"
+      xmlns:sec="http://www.w3.org/1999/xhtml"
+>
 <head>
     <meta charset="UTF-8">
     <title>Inicio</title>
@@ -14,12 +16,13 @@
     </div>
     <nav>
         <a th:href="@{/listGatos}">Gatos</a>
-        <a th:href="@{/usuarios}">Usuarios</a>
-        <a th:href="@{/pedidos}">Pedidos</a>
+        <a th:href="@{/usuarios}" sec:authorize="hasRole('EMPLEADO')">Usuarios</a>
         <a th:href="@{/product}">Productos</a>
-        <a th:href="@{/linPedido}">Líneas de pedido</a>
-        <a th:href="@{/listGatosAdoptados}">Gatos Adoptados</a>
-        <a th:href="@{/systechsolutions}">SysTech Solutions</a>
+        <a th:href="@{/pedidos}" sec:authorize="hasRole('EMPLEADO')">Pedidos</a>
+        <a th:href="@{/pedidos/misPedidos}" sec:authorize="hasRole('CLIENTE')">Mis Pedidos</a>
+        <a th:href="@{/linPedido}" sec:authorize="hasRole('EMPLEADO')">Líneas de pedido</a>
+        <a th:href="@{/listGatosAdoptados}" sec:authorize="hasRole('EMPLEADO')">Gatos Adoptados</a>
+        <!--<a th:href="@{/systechsolutions}">SysTech Solutions</a>-->
         <form action="#" th:action="@{/logout}" method="POST">
             <input type="submit" value="Logout">
         </form>

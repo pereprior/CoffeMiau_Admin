@@ -7,6 +7,8 @@ import com.example.demo.models.services.LinPedidoService;
 import com.example.demo.models.services.PedidoService;
 import com.example.demo.models.services.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,6 +36,21 @@ public class PedidoController {
         return "pedidos";
     }
 
+    @GetMapping("/pedidos/misPedidos")
+    public String misPedidos(Model model) {
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            String username = ((UserDetails) principal).getUsername();
+            Usuario usuario = usuarioService.findByName(username);
+            List<Pedido> listaPedidos = pedidoService.finByUser(usuario);
+            model.addAttribute("pedidos", listaPedidos);
+        }
+
+        return "pedidos";
+    }
+
+
     @GetMapping("/pedidos/add")
     public String mostrarFormularioNuevoPedido(Model model) {
         model.addAttribute("pedido", new Pedido());
@@ -46,14 +63,24 @@ public class PedidoController {
 
     @PostMapping("/pedidos/add")
     public String crearNuevoPedido(@ModelAttribute Pedido pedido, Model model) {
-        if(pedido.getCliente() == null) {
-            model.addAttribute("error", "El usuario seleccionado no existe.");
+        try {
+            Usuario cliente = usuarioService.findById(pedido.getCliente().getId());
+
+            if (cliente == null) {
+                model.addAttribute("error", "El usuario seleccionado no existe.");
+                List<Usuario> listaUsuarios = usuarioService.findAll();
+                model.addAttribute("usuarios", listaUsuarios);
+                return "add_pedido";
+            }
+
+            pedido.setCliente(cliente);
+            pedidoService.save(pedido);
+            return "redirect:/pedidos";
+        } catch (NumberFormatException e) {
+            model.addAttribute("error", "El ID del cliente no es válido.");
             List<Usuario> listaUsuarios = usuarioService.findAll();
             model.addAttribute("usuarios", listaUsuarios);
             return "add_pedido";
-        } else {
-            pedidoService.save(pedido);
-            return "redirect:/pedidos";
         }
     }
 

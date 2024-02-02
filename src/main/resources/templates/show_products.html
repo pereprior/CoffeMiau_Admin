@@ -35,7 +35,7 @@
             <td th:text="${product.precio}"></td>
             <td sec:authorize="hasRole('EMPLEADO')">
                 <a th:href="@{/product/{productId}(productId=${product.id_producto})}" class="btn btn-warning btn-sm">Editar</a>
-                <form th:action="@{/product/deleteProduct/{productId}(productId=${product.id_producto})}" method="post" onsubmit="return confirm('¿Estás seguro de eliminar este producto?')">
+                <form sec:authorize="hasRole('ADMIN')" th:action="@{/product/deleteProduct/{productId}(productId=${product.id_producto})}" method="post" onsubmit="return confirm('¿Estás seguro de eliminar este producto?')">
                     <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
                 </form>
             </td>

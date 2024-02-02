@@ -63,6 +63,7 @@
 
     <form th:action="@{/usuarios/add}" th:object="${usuario}" method="post">
         <label>Nombre: <input type="text" th:field="*{nombre}" required></label>
+        <label>Contraseña: <input type="password" th:field="*{password}" required></label>
         <label>Email: <input type="email" th:field="*{email}" required></label>
         <label>Teléfono: <input type="text" th:field="*{telefono}" required></label>
         <label>Rol:

@@ -15,7 +15,6 @@ public interface IGatoService {
     @Transactional(readOnly= true)
     List<GatoAdoptado> findAllGatosAdoptados();
 
-
     void save(Gato gato);
 
     Gato findById(Long id);

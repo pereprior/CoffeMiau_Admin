@@ -18,6 +18,10 @@ public class Usuario {
     @Column(name = "nombre")
     private String nombre;
 
+    @NotNull
+    @Column(name = "password")
+    private String password;
+
     @Column(name = "email")
     private String email;
 
@@ -80,5 +84,13 @@ public class Usuario {
 
     public String getRol() {
         return rol;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

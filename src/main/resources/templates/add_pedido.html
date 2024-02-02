@@ -62,13 +62,14 @@
 
 <div>
     <h2>Crear Nuevo Pedido</h2>
-    <div th:if="${error}" style="color: red;">
-        <p th:text="${error}"></p>
-    </div>
 
     <form th:action="@{/pedidos/add}" th:object="${pedido}" method="post">
         <label>Fecha: <input type="datetime-local" th:field="*{fecha}" required></label><br>
-        <label>Cliente ID: <input type="text" th:field="*{cliente}" required></label><br>
+        <label>Cliente:
+            <select th:field="*{cliente.id}" required>
+                <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}"></option>
+            </select>
+        </label><br>
         <div class="button">
             <button type="submit">Guardar Pedido</button>
         </div>

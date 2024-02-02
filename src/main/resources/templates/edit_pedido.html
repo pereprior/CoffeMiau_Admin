@@ -68,7 +68,11 @@
         <form th:action="@{/pedidos/edit}" th:object="${pedido}" method="post">
             <input type="hidden" th:field="*{id}"/>
             <label>Fecha: <input type="datetime-local" th:field="*{fecha}" required></label><br>
-            <label>Cliente ID: <input type="text" th:field="*{cliente}" required></label><br>
+            <label>Cliente:
+                <select th:field="*{cliente.id}" required>
+                    <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}"></option>
+                </select>
+            </label><br>
             <div class="button">
                 <button type="submit">Guardar Pedido</button>
             </div>

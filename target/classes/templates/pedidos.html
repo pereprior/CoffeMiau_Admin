@@ -9,7 +9,78 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" th:href="@{css/home.css}">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #FEEDD7;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        header {
+            background-color: #FEEED5;
+            padding: 10px;
+            color: white;
+        }
+
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color: #F9C6C5;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        nav a {
+            color: #9A544C;
+            text-decoration: none;
+            margin: 0 20px;
+            font-size: 18px;
+        }
+
+        nav a:hover {
+            color: #FE9553;
+        }
+
+        table {
+            margin: 0 auto;
+            align-content: center;
+        }
+
+        .logo {
+            width: 60px;
+            height: auto;
+            position: absolute;
+            left: 20px;
+            top: 40px;
+            transform: translateY(-50%);
+        }
+
+        h1 {
+            color: #9A544C;
+        }
+
+        h2 {
+            color: #9A544C;
+        }
+
+        table {
+            color: black;
+            border-color: #F0B3B2;
+        }
+
+        button {
+            background-color: #FAC3C4;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #FE9553;
+        }
+    </style>
 </head>
 
 <body>
@@ -32,10 +103,10 @@
         <tr th:each="pedido : ${pedidos}">
             <td th:text="${pedido.id}"></td>
             <td th:text="${pedido.fecha}"></td>
-            <td th:text="${pedido.cliente.id}"></td>
+            <td th:text="${pedido.cliente.nombre}"></td>
             <td sec:authorize="hasRole('EMPLEADO')">
                 <a th:href="@{/pedidos/edit/{id}(id=${pedido.id})}" class="btn btn-warning btn-sm">Editar</a>
-                <form th:action="@{/pedidos/delete/{id}(id=${pedido.id})}" method="post" onsubmit="return confirm('¿Estás seguro?')">
+                <form sec:authorize="hasRole('ADMIN')" th:action="@{/pedidos/delete/{id}(id=${pedido.id})}" method="post" onsubmit="return confirm('¿Estás seguro?')">
                     <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                 </form>
             </td>

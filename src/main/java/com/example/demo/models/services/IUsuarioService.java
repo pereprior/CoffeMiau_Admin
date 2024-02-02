@@ -9,6 +9,8 @@ public interface IUsuarioService {
 
     Usuario findById(Long id);
 
+    Usuario findByName(String name);
+
     List<Usuario> findAll();
 
     void delete(Long id);

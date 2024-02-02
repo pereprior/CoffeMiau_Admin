@@ -100,3 +100,9 @@ Hsrc/main/java/com/example/demo/restcontroller/UsuarioRestController.java,4/8/4
 :
 
 .gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302
+p
+@src/main/java/com/example/demo/models/services/IGatoService.java,7/c/7cb8deae3a97fb12539b4af61e7b40e788acac69
+s
+Csrc/main/java/com/example/demo/models/services/GatoServiceImpl.java,d/2/d20ea82ea6ae725432b58514bf66dfe72d32c882
+g
+7src/main/java/com/example/demo/models/dao/IGatoDao.java,5/9/597ef947bd20bdf606be0aad12c693ca655e347a

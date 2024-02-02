@@ -32,6 +32,12 @@ public class UsuarioService implements IUsuarioService {
     }
 
     @Override
+    @Transactional
+    public Usuario findByName(String name) {
+        return dao.findByUsername(name);
+    }
+
+    @Override
     public List<Usuario> findAll() {
         return dao.findAll();
     }
