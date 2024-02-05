@@ -16,7 +16,7 @@
 
 <div class="container mt-3">
     <h2>Lista de Usuarios</h2>
-    <a th:href="@{/usuarios/add}" class="btn btn-primary mb-2" sec:authorize="hasRole('EMPLEADO')">Crear</a>
+    <a th:href="@{/usuarios/add}" class="btn btn-primary mb-2" sec:authorize="hasRole('ADMINISTRADOR')">Crear</a>
 
     <table class="table table-bordered">
         <thead>
@@ -36,9 +36,9 @@
             <td th:text="${usuario.email}"></td>
             <td th:text="${usuario.telefono}"></td>
             <td th:text="${usuario.rol}"></td>
-            <td sec:authorize="hasRole('EMPLEADO')">
+            <td sec:authorize="hasRole('ADMINISTRADOR')">
                 <a th:href="@{/usuarios/edit/{id}(id=${usuario.id})}" class="btn btn-warning btn-sm">Editar</a>
-                <form sec:authorize="hasRole('ADMIN')" th:action="@{/usuarios/delete/{id}(id=${usuario.id})}" method="post" onsubmit="return confirm('¿Estás seguro?')">
+                <form sec:authorize="hasRole('ADMINISTRADOR')" th:action="@{/usuarios/delete/{id}(id=${usuario.id})}" method="post" onsubmit="return confirm('¿Estás seguro?')">
                     <button type="submit" class="btn btn-danger btn-sm">Borrar</button>
                 </form>
             </td>

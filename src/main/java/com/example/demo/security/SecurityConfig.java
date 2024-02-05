@@ -28,7 +28,9 @@ public class SecurityConfig {
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
+        //Para hacer login con contrseña en texto plano para pruebas
     }
+
 
 //    @Bean
 //    public InMemoryUserDetailsManager userDetailsManager() {
