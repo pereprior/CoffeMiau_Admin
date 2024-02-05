@@ -62,3 +62,5 @@ C
 Q.idea/sonarlint/securityhotspotstore/5/5/5517bf63592a379f4866697624edf6e966175e93,5/3/53fd3c98f68b81c0f153b8c0191ab214adb4cff5
 w
 G.idea/sonarlint/issuestore/5/5/5517bf63592a379f4866697624edf6e966175e93,3/3/33e10ae1a9c098a645a8e34849f5bf56628efad8
+p
+@src/main/java/com/example/demo/controller/UsuarioController.java,d/a/da5e70aabd44567bebcf71601f815264e9812388

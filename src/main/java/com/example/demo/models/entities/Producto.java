@@ -1,11 +1,11 @@
 package com.example.demo.models.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Producto")
 public class Producto {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_producto")
@@ -18,7 +18,8 @@ public class Producto {
     private String descripcion;
 
     @Column(name = "foto_producto")
-    private String foto_producto;
+    @JsonIgnore
+    private String foto;
 
     @Column(name = "precio")
     private Double precio;
@@ -55,11 +56,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getFoto_producto() {
-        return foto_producto;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setFoto_producto(String foto) {
-        this.foto_producto = foto;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
 }

@@ -13,7 +13,6 @@ import java.util.List;
 
 @Repository
 public class UsuarioService implements IUsuarioService {
-
     private final IUsuarioDao dao;
     private final PasswordEncoder passwordEncoder;
 
@@ -23,34 +22,28 @@ public class UsuarioService implements IUsuarioService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    @Override
     @Transactional
     public void save(Usuario usuario) {
         usuario.setPassword(this.passwordEncoder.encode(usuario.getPassword()));
-        dao.save(usuario);
+        this.dao.save(usuario);
     }
 
-    @Override
     public Usuario findById(Long id) {
-        return dao.findById(id).orElse(null);
+        return this.dao.findById(id).orElse(null);
     }
 
-    @Override
     @Transactional
     public Usuario findByName(String name) {
-        return dao.findByUsername(name);
+        return this.dao.findByUsername(name);
     }
 
-    @Override
     public List<Usuario> findAll() {
-        return dao.findAll();
+        return this.dao.findAll();
     }
 
-    @Override
     @Transactional
     public void delete(Long id) {
-        dao.deleteById(id);
+        this.dao.deleteById(id);
     }
-
 }
 

@@ -34,7 +34,7 @@
         <tr th:each="product : ${products}">
             <td th:text="${product.id_producto}"></td>
             <td>
-                <img th:if="${product.foto_producto != null}" th:src="${product.foto_producto}" alt="Foto del gato" style="width: 200px; height: 200px;"/>
+                <img th:if="${product.foto != null}" th:src="${product.foto}" alt="Foto del gato" style="width: 200px; height: 200px;"/>
             </td>
             <td th:text="${product.nombre}"></td>
             <td th:text="${product.descripcion}"></td>
