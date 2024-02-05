@@ -58,12 +58,7 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(configurer ->
                         configurer
-//                                .requestMatchers("/gatos/**").hasAuthority("EMPLEADO")
-//                                .requestMatchers("/gatos/**").hasAuthority("EMPLEADO")
-//                                .requestMatchers("/gatos/**").hasRole("ADMIN")
-//                                .requestMatchers("/gatos/**").hasRole("EMPLEADO")
                                 .anyRequest().authenticated()
-//                                .anyRequest().denyAll()
 
 
                 ).formLogin(form ->

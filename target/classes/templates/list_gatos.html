@@ -1,7 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="es"
-      xmlns:sec="http://www.w3.org/1999/xhtml"
->
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
     <meta charset="UTF-8">
     <title>Lista de Gatos</title>
@@ -16,7 +15,7 @@
 
 <div class="container mt-3">
     <h2>Lista de Gatos</h2>
-    <a th:href="@{/gatos/formForAddGato}" class="btn btn-primary mb-2" sec:authorize="hasRole('EMPLEADO')">Agregar Gato</a>
+    <a th:href="@{/gatos/formForAddGato}" class="btn btn-primary mb-2" sec:authorize="hasAnyRole('ADMINISTRADOR','EMPLEADO')">Agregar Gato</a>
 
     <table class="table table-bordered">
         <thead>
@@ -28,7 +27,7 @@
             <th>Información Médica</th>
             <th>Enfermedades</th>
             <th>Castrado</th>
-            <th sec:authorize="hasRole('EMPLEADO')">Acciones</th>
+            <th sec:authorize="hasAnyRole('ADMINISTRADOR','EMPLEADO')">Acciones</th>
         </tr>
         </thead>
         <tbody>
@@ -42,9 +41,9 @@
             <td th:text="${gato.informacionMedica}"></td>
             <td th:text="${gato.enfermedades}"></td>
             <td th:text="${gato.castrado}"></td>
-            <td sec:authorize="hasRole('EMPLEADO')">
+            <td sec:authorize="hasAnyRole('ADMINISTRADOR','EMPLEADO')">
                 <a th:href="@{/gatos/formForUpdateGato(gatoId=${gato.idGato})}" class="btn btn-warning btn-sm">Editar</a>
-                <a sec:authorize="hasRole('ADMIN')" th:href="@{/gatos/deleteGato(gatoId=${gato.idGato})}" class="btn btn-danger btn-sm">Eliminar</a>
+                <a sec:authorize="hasRole('ADMINISTRADOR')" th:href="@{/gatos/deleteGato(gatoId=${gato.idGato})}" class="btn btn-danger btn-sm">Eliminar</a>
                 <a th:href="@{/gatos/formForAdopcion(gatoId=${gato.idGato})}" class="btn btn-success btn-sm">Adoptar</a>
             </td>
         </tr>
