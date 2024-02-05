@@ -31,7 +31,11 @@ public class Usuario {
     @Column(name = "rol")
     private String rol;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL)
+    @OneToMany(
+            mappedBy = "cliente",
+            cascade = {CascadeType.ALL},
+            orphanRemoval = true
+    )
     @JsonIgnore
     private List<Pedido> pedidos;
 

@@ -23,7 +23,9 @@
         <thead>
         <tr>
             <th>ID</th>
+            <th>Foto</th>
             <th>Nombre</th>
+            <th>Descripcion</th>
             <th>Precio</th>
             <th sec:authorize="hasRole('EMPLEADO')">Acciones</th>
         </tr>
@@ -31,7 +33,11 @@
         <tbody>
         <tr th:each="product : ${products}">
             <td th:text="${product.id_producto}"></td>
+            <td>
+                <img th:if="${product.foto != null}" th:src="${product.foto}" alt="Foto del gato" style="width: 200px; height: 200px;"/>
+            </td>
             <td th:text="${product.nombre}"></td>
+            <td th:text="${product.descripcion}"></td>
             <td th:text="${product.precio}"></td>
             <td sec:authorize="hasRole('EMPLEADO')">
                 <a th:href="@{/product/{productId}(productId=${product.id_producto})}" class="btn btn-warning btn-sm">Editar</a>
