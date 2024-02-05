@@ -3,11 +3,11 @@ package com.example.demo.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
-
 import java.util.List;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "usuario", uniqueConstraints=
+@UniqueConstraint(columnNames={"nombre"}))
 public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,7 +15,7 @@ public class Usuario {
     private Long id;
 
     @NotNull
-    @Column(name = "nombre")
+    @Column(name = "nombre",unique = true)
     private String nombre;
 
     @NotNull
@@ -26,7 +26,7 @@ public class Usuario {
     private String email;
 
     @Column(name = "telefono")
-    private int telefono;
+    private String telefono;
 
     @Column(name = "rol")
     private String rol;
@@ -55,7 +55,7 @@ public class Usuario {
         return email;
     }
 
-    public void setTelefono(int telefono) {
+    public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
 
@@ -63,7 +63,7 @@ public class Usuario {
         this.email = email;
     }
 
-    public int getTelefono() {
+    public String getTelefono() {
         return telefono;
     }
 

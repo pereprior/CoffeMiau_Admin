@@ -26,21 +26,6 @@ public class CoffeeMiauUserDetails implements UserDetails {
         return authorities;
     }
 
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        return Arrays.stream(usuario.getRol().split(","))
-//                .map(SimpleGrantedAuthority::new)
-//                .collect(Collectors.toList());
-//    }
-
-//    @Override
-//    public Collection<? extends GrantedAuthority> getAuthorities() {
-//        Set<GrantedAuthority> authorities = usuario.getRolesAssociated().stream()
-//                .map(role -> new SimpleGrantedAuthority(role.getName()))
-//                .collect(Collectors.toSet());
-//        return authorities;
-//    }
-
     @Override
     public String getPassword() {
         return usuario.getPassword();

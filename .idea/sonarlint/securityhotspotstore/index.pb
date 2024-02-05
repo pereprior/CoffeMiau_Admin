@@ -106,3 +106,11 @@ s
 Csrc/main/java/com/example/demo/models/services/GatoServiceImpl.java,d/2/d20ea82ea6ae725432b58514bf66dfe72d32c882
 g
 7src/main/java/com/example/demo/models/dao/IGatoDao.java,5/9/597ef947bd20bdf606be0aad12c693ca655e347a
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+C
+Spring_Product2.iml,5/5/5517bf63592a379f4866697624edf6e966175e93
+Å
+Q.idea/sonarlint/securityhotspotstore/5/5/5517bf63592a379f4866697624edf6e966175e93,5/3/53fd3c98f68b81c0f153b8c0191ab214adb4cff5
+w
+G.idea/sonarlint/issuestore/5/5/5517bf63592a379f4866697624edf6e966175e93,3/3/33e10ae1a9c098a645a8e34849f5bf56628efad8
