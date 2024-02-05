@@ -14,6 +14,9 @@ public class Producto {
     @Column(name = "nombre")
     private String nombre;
 
+    /*@Column(name = "nombre")
+    private String nombre;*/
+
     @Column(name = "precio")
     private Double precio;
 
