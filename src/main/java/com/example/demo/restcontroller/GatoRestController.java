@@ -23,7 +23,7 @@ public class GatoRestController {
         return new ResponseEntity<>(gatos, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/noAdoptados/{id}")
     public ResponseEntity<Gato> getGatoById(@PathVariable Long id) {
         Gato gato = gatoService.findById(id);
         if (gato != null) {
