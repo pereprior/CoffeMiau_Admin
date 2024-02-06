@@ -86,7 +86,7 @@
             <label>Castrado: </label><span th:text="*{castrado} ? 'Sí' : 'No'"></span><br />
             <label for="clienteId">Seleccionar Cliente:</label>
             <select id="clienteId" name="clienteId">
-                <option th:each="cliente : ${usuarios}" th:value="${cliente.id}" th:text="${cliente.nombre}"></option>
+                <option th:each="cliente : ${usuarios}" th:value="${cliente.id}" th:text="${cliente.username}"></option>
             </select>
         </div>
 

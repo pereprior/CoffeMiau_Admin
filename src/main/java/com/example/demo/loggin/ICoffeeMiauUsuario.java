@@ -8,7 +8,7 @@ import java.util.Optional;
 public interface ICoffeeMiauUsuario {
     List<Usuario> getAllUsers();
     Optional<Usuario> getUserById(Long id);
-    Optional<Usuario> getUserByUsernameOrEmail(String nombre, String email);
+    Optional<Usuario> getUserByUsernameOrEmail(String username, String email);
     Usuario createUser(Usuario usuario);
     Usuario updateUser(Long id, Usuario nuevoDatosUsuario);
     void deleteUser(Long id);

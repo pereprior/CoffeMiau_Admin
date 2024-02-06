@@ -90,7 +90,7 @@ public class GatoController {
 
             if (cliente != null) {
                 gatoParaAdopcion.setIdPropietario(cliente.getId());
-                gatoParaAdopcion.setNombrePropietario(cliente.getNombre());
+                gatoParaAdopcion.setNombrePropietario(cliente.getUsername());
 
                 gatoService.adoptarGato(gatoParaAdopcion.getIdGato(), cliente.getId());
                 return "redirect:/listGatos";

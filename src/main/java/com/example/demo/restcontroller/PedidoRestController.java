@@ -42,24 +42,4 @@ public class PedidoRestController {
         Pedido savedPedido = pedidoService.findById(pedido.getId());
         return new ResponseEntity<>(savedPedido, HttpStatus.CREATED);
     }
-
-    @PutMapping("/{pedidoId}")
-    public ResponseEntity<Pedido> updatePedido(@PathVariable Long pedidoId, @RequestBody Pedido pedido) {
-        Pedido existingPedido = pedidoService.findById(pedidoId);
-
-        if (existingPedido != null) {
-            pedido.setId(pedidoId);
-            pedidoService.save(pedido);
-            Pedido updatedPedido = pedidoService.findById(pedido.getId());
-            return new ResponseEntity<>(updatedPedido, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/delete/{pedidoId}")
-    public ResponseEntity<Void> deletePedido(@PathVariable Long pedidoId) {
-        pedidoService.delete(pedidoId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }

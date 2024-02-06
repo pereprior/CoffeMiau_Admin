@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface IUsuarioDao extends JpaRepository<Usuario, Long> {
 
-    @Query("SELECT u FROM Usuario u WHERE u.nombre = :nombre")
-    Usuario findByUsername(@Param("nombre") String nombre);
+    @Query("SELECT u FROM Usuario u WHERE u.username = :username")
+    Usuario findByUsername(@Param("username") String username);
 
 }
 

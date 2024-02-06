@@ -29,8 +29,8 @@ public class CoffeeMiauUserImpl implements ICoffeeMiauUsuario {
     }
 
     @Override
-    public Optional<Usuario> getUserByUsernameOrEmail(String nombre, String email) {
-        return repositorioUsuario.findByNombreOrEmail(nombre, email); }
+    public Optional<Usuario> getUserByUsernameOrEmail(String username, String email) {
+        return repositorioUsuario.findByUsernameOrEmail(username, email); }
 
     @Override
     public Usuario createUser(Usuario user) {
@@ -43,7 +43,7 @@ public class CoffeeMiauUserImpl implements ICoffeeMiauUsuario {
 
         if (existingUser.isPresent()) {
             Usuario userToUpdate = existingUser.get();
-            userToUpdate.setNombre(updatedUser.getNombre());
+            userToUpdate.setUsername(updatedUser.getUsername());
             userToUpdate.setEmail(updatedUser.getEmail());
             userToUpdate.setPassword(updatedUser.getPassword());
             userToUpdate.setTelefono(updatedUser.getTelefono());

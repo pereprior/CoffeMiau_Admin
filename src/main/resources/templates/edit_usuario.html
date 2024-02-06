@@ -65,7 +65,7 @@
 
     <form th:action="@{/usuarios/edit}" th:object="${usuario}" method="post">
         <input type="hidden" th:field="*{id}"/>
-        <label>Nombre: <input type="text" th:field="*{nombre}" required></label><br>
+        <label>Nombre: <input type="text" th:field="*{username}" required></label><br>
         <label>Email: <input type="email" th:field="*{email}" required></label><br>
         <label>Teléfono: <input type="text" th:field="*{telefono}" required></label><br>
         <label>Rol:

@@ -67,7 +67,7 @@
         <label>Fecha: <input type="datetime-local" th:field="*{fecha}" required></label><br>
         <label>Cliente:
             <select th:field="*{cliente.id}" required>
-                <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}"></option>
+                <option th:each="usuario : ${usuarios}" th:value="${usuario.id}" th:text="${usuario.username}"></option>
             </select>
         </label><br>
         <div class="button">

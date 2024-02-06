@@ -23,20 +23,4 @@ public class ProductoRestController {
     public Producto getProductoById(@PathVariable Long productId) {
         return productoService.findById(productId);
     }
-
-    @PostMapping
-    public Producto createProducto(@RequestBody Producto producto) {
-        return productoService.update(producto);
-    }
-
-    @PutMapping("/{productId}")
-    public Producto updateProducto(@PathVariable Long productId, @RequestBody Producto producto) {
-        producto.setId_producto(productId);
-        return productoService.update(producto);
-    }
-
-    @DeleteMapping("/{productId}")
-    public void deleteProducto(@PathVariable Long productId) {
-        productoService.delete(productId);
-    }
 }

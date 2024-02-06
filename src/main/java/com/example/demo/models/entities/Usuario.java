@@ -3,20 +3,25 @@ package com.example.demo.models.entities;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import org.antlr.v4.runtime.misc.NotNull;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "usuario", uniqueConstraints=
-@UniqueConstraint(columnNames={"nombre"}))
-public class Usuario {
+@UniqueConstraint(columnNames={"username"}))
+public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_usuario")
     private Long id;
 
     @NotNull
-    @Column(name = "nombre",unique = true)
-    private String nombre;
+    @Column(name = "username",unique = true)
+    private String username;
 
     @NotNull
     @Column(name = "password")
@@ -35,12 +40,8 @@ public class Usuario {
     @JsonIgnore
     private List<Pedido> pedidos;
 
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setUsername(String nombre) {
+        this.username = nombre;
     }
 
     public void setId(Long id) {
@@ -83,12 +84,41 @@ public class Usuario {
         return rol;
     }
 
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return List.of(new SimpleGrantedAuthority(rol));
+    }
+
     public String getPassword() {
         return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

@@ -103,7 +103,7 @@
         <tr th:each="pedido : ${pedidos}">
             <td th:text="${pedido.id}"></td>
             <td th:text="${pedido.fecha}"></td>
-            <td th:text="${pedido.cliente.nombre}"></td>
+            <td th:text="${pedido.cliente.username}"></td>
             <td sec:authorize="hasRole('EMPLEADO')">
                 <a th:href="@{/pedidos/edit/{id}(id=${pedido.id})}" class="btn btn-warning btn-sm">Editar</a>
                 <form sec:authorize="hasRole('ADMIN')" th:action="@{/pedidos/delete/{id}(id=${pedido.id})}" method="post" onsubmit="return confirm('¿Estás seguro?')">

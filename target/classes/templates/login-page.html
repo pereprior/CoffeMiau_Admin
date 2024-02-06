@@ -77,6 +77,9 @@
         Password: <input type="password" name="password">
     </p>
 
+    <!-- Campo oculto para enviar el token después de iniciar sesión -->
+    <input type="hidden" name="token" th:value="${token}">
+
     <input type="submit" value="Login">
 </form>
 

@@ -1,69 +1,52 @@
 package com.example.demo.security;
 
-import com.example.demo.loggin.CoffeeMiauUserDetailsService;
-import org.springframework.beans.factory.annotation.Autowired;
+//import com.example.demo.filter.JwtAuthenticationFilter;
+//import com.example.demo.models.services.UsuarioTokenService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
 
-    @Autowired
-    CoffeeMiauUserDetailsService coffeeMiauUserDetailsService;
-
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder();
+//    private final UsuarioTokenService usuarioTokenService;
+//    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+//
+//    public SecurityConfig(UsuarioTokenService usuarioTokenService, JwtAuthenticationFilter jwtAuthenticationFilter) {
+//        this.usuarioTokenService = usuarioTokenService;
+//        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
 //    }
 
     @Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-        //Para hacer login con contrseña en texto plano para pruebas
-    }
-
-
-//    @Bean
-//    public InMemoryUserDetailsManager userDetailsManager() {
-//
-//        UserDetails clientTest = User.builder()
-//                .username("client")
-//                .password("{noop}client")
-//                .roles("CLIENTE")
-//                .build();
-//
-//        UserDetails employeeTest = User.builder()
-//                .username("employee")
-//                .password("{noop}employee")
-//                .roles("EMPLEADO")
-//                .build();
-//
-//        UserDetails adminTest = User.builder()
-//                .username("admin")
-//                .password("{noop}admin")
-//                .roles("EMPLEADO", "ADMINISTRADOR")
-//                .build();
-//
-//        return new InMemoryUserDetailsManager(clientTest, employeeTest, adminTest);
-//    }
-
-    @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(configurer ->
-                        configurer
-                                .anyRequest().authenticated()
-
-
-                ).formLogin(form ->
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .authorizeHttpRequests(
+                        configurer ->
+                                configurer
+                                        .anyRequest().authenticated()
+                )
+                .csrf(AbstractHttpConfigurer::disable)
+//                .authorizeHttpRequests(
+//                        req -> req.requestMatchers("/login/**", "/register/**", "/showLoginPage")
+//                                .permitAll()
+//                                .anyRequest()
+//                                .authenticated()
+//                ).userDetailsService(usuarioTokenService)
+//                .sessionManagement(session -> session
+//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .formLogin(form ->
                         form
                                 .loginPage("/showLoginPage")
                                 .loginProcessingUrl("/authenticateTheUser")
@@ -73,8 +56,16 @@ public class SecurityConfig {
                 ).exceptionHandling(configurer ->
                         configurer.accessDeniedPage("/access-denied")
                 )
-                .csrf().disable();
+                .build();
+    }
 
-        return http.build();
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
     }
 }

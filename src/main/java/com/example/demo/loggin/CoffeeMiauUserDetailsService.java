@@ -16,10 +16,10 @@ public class CoffeeMiauUserDetailsService implements UserDetailsService {
     private RepositorioUsuario repositorioUsuario;
 
     @Override
-    public UserDetails loadUserByUsername(String nombre) {
-        Usuario usuario = repositorioUsuario.findByNombreOrEmail(nombre, null).get();
+    public UserDetails loadUserByUsername(String username) {
+        Usuario usuario = repositorioUsuario.findByUsernameOrEmail(username, null).get();
         if (usuario == null) {
-            throw new UsernameNotFoundException(nombre);
+            throw new UsernameNotFoundException(username);
         }
         return new CoffeeMiauUserDetails(usuario);
     }

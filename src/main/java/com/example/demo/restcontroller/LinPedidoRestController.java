@@ -37,23 +37,4 @@ public class LinPedidoRestController {
         LinPedido savedLinPedido = linPedidoService.update(linPedido);
         return new ResponseEntity<>(savedLinPedido, HttpStatus.CREATED);
     }
-
-    @PutMapping("/{linPedidoId}")
-    public ResponseEntity<LinPedido> updateLinPedido(@PathVariable Long linPedidoId, @RequestBody LinPedido linPedido) {
-        LinPedido existingLinPedido = linPedidoService.findById(linPedidoId);
-
-        if (existingLinPedido != null) {
-            linPedido.setId_lin_pedido(linPedidoId);
-            LinPedido updatedLinPedido = linPedidoService.update(linPedido);
-            return new ResponseEntity<>(updatedLinPedido, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-    }
-
-    @DeleteMapping("/deleteLinPedido/{linPedidoId}")
-    public ResponseEntity<Void> deleteLinPedido(@PathVariable Long linPedidoId) {
-        linPedidoService.delete(linPedidoId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
 }

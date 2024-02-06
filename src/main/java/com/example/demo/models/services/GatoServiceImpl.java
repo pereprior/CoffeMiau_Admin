@@ -87,7 +87,7 @@ public class GatoServiceImpl implements IGatoService {
             Optional<Usuario> optionalPropietario = usuarioDao.findById(idCliente);
             if (optionalPropietario.isPresent()) {
                 Usuario propietario = optionalPropietario.get();
-                gatoAdoptado.setNombrePropietario(propietario.getNombre());
+                gatoAdoptado.setNombrePropietario(propietario.getUsername());
             } else {
                 throw new RuntimeException("Propietario no encontrado con ID: " + idCliente);
             }
