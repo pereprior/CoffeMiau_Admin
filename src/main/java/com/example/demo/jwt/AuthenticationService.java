@@ -1,6 +1,5 @@
 package com.example.demo.jwt;
 
-import com.example.demo.models.dao.IUsuarioTokenDao;
 import com.example.demo.models.entities.Usuario;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

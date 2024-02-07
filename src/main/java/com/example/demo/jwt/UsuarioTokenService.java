@@ -1,6 +1,5 @@
 package com.example.demo.jwt;
 
-import com.example.demo.models.dao.IUsuarioTokenDao;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
