@@ -1,4 +1,4 @@
-package com.example.demo.models.dao;
+package com.example.demo.jwt;
 
 import com.example.demo.models.entities.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
