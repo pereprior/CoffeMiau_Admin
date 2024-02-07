@@ -17,7 +17,7 @@ public class GatoRestController {
     @Autowired
     private IGatoService gatoService;
 
-    @GetMapping("/noAdoptados")
+    @GetMapping()
     public ResponseEntity<List<Gato>> getAllGatos() {
         List<Gato> gatos = gatoService.findAllGatos();
         return new ResponseEntity<>(gatos, HttpStatus.OK);

@@ -40,8 +40,8 @@ public class Usuario implements UserDetails {
     @JsonIgnore
     private List<Pedido> pedidos;
 
-    public void setUsername(String nombre) {
-        this.username = nombre;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public void setId(Long id) {

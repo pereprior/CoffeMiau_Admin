@@ -1,7 +1,7 @@
 package com.example.demo.security;
 
-//import com.example.demo.filter.JwtAuthenticationFilter;
-//import com.example.demo.models.services.UsuarioTokenService;
+import com.example.demo.jwt.JwtAuthenticationFilter;
+import com.example.demo.jwt.UsuarioTokenService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,42 +20,42 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableWebSecurity
 public class SecurityConfig {
 
-//    private final UsuarioTokenService usuarioTokenService;
-//    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-//
-//    public SecurityConfig(UsuarioTokenService usuarioTokenService, JwtAuthenticationFilter jwtAuthenticationFilter) {
-//        this.usuarioTokenService = usuarioTokenService;
-//        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
-//    }
+    private final UsuarioTokenService usuarioTokenService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
+
+    public SecurityConfig(UsuarioTokenService usuarioTokenService, JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.usuarioTokenService = usuarioTokenService;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-                .authorizeHttpRequests(
-                        configurer ->
-                                configurer
-                                        .anyRequest().authenticated()
-                )
-                .csrf(AbstractHttpConfigurer::disable)
 //                .authorizeHttpRequests(
-//                        req -> req.requestMatchers("/login/**", "/register/**", "/showLoginPage")
-//                                .permitAll()
-//                                .anyRequest()
-//                                .authenticated()
-//                ).userDetailsService(usuarioTokenService)
-//                .sessionManagement(session -> session
-//                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-//                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-                .formLogin(form ->
-                        form
-                                .loginPage("/showLoginPage")
-                                .loginProcessingUrl("/authenticateTheUser")
+//                        configurer ->
+//                                configurer
+//                                        .anyRequest().authenticated()
+//                )
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        req -> req.requestMatchers("/login/**", "/register/**", "/showLoginPage")
                                 .permitAll()
-                ).logout(
-                        LogoutConfigurer::permitAll
-                ).exceptionHandling(configurer ->
-                        configurer.accessDeniedPage("/access-denied")
-                )
+                                .anyRequest()
+                                .authenticated()
+                ).userDetailsService(usuarioTokenService)
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+//                .formLogin(form ->
+//                        form
+//                                .loginPage("/showLoginPage")
+//                                .loginProcessingUrl("/authenticateTheUser")
+//                                .permitAll()
+//                ).logout(
+//                        LogoutConfigurer::permitAll
+//                ).exceptionHandling(configurer ->
+//                        configurer.accessDeniedPage("/access-denied")
+//                )
                 .build();
     }
 
