@@ -1,6 +1,5 @@
 package com.example.demo.models.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 @Entity
@@ -19,8 +18,7 @@ public class Producto {
     private String descripcion;
 
     @Column(name = "foto_producto")
-    @JsonIgnore
-    private String foto;
+    private String foto_producto;
 
     @Column(name = "precio")
     private Double precio;
@@ -57,11 +55,11 @@ public class Producto {
         this.descripcion = descripcion;
     }
 
-    public String getFoto() {
-        return foto;
+    public String getFoto_producto() {
+        return foto_producto;
     }
 
-    public void setFoto(String foto) {
-        this.foto = foto;
+    public void setFoto_producto(String foto) {
+        this.foto_producto = foto;
     }
 }

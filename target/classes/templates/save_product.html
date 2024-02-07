@@ -65,7 +65,7 @@
 
     <form th:action="@{/product/saveProduct}" method="post" th:object="${product}">
         <label for="foto">Foto Referencia:</label>
-        <input type="text" id="foto" name="foto" th:field="*{foto}" required>
+        <input type="text" id="foto" name="foto" th:field="*{foto_producto}" required>
         <br>
 
         <label for="nombre">Nombre:</label>

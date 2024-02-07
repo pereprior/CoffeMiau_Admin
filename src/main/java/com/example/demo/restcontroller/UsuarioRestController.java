@@ -31,4 +31,14 @@ public class UsuarioRestController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/username/{username}")
+    public ResponseEntity<Usuario> getUsuarioByName(@PathVariable String username) {
+        Usuario usuario = usuarioService.findByName(username);
+        if (usuario != null) {
+            return new ResponseEntity<>(usuario, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
