@@ -2,13 +2,13 @@ package com.example.demo.models.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class GatosDTO {
+public class GatoDTO {
     @JsonProperty("id")
     private Long id;
     @JsonProperty("nombre")
     private String nombre;
 
-    @JsonProperty("urlFotoGato")
+    @JsonProperty("url")
     private String urlFotoGato;
     @JsonProperty("color")
     private String color;

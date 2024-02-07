@@ -1,8 +1,6 @@
 package com.example.demo.restcontroller;
 
 import com.example.demo.models.entities.Pedido;
-import com.example.demo.models.dto.PedidoDTO;
-import com.example.demo.models.dto.UsuarioDTO;
 import com.example.demo.models.services.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/pedidos")
