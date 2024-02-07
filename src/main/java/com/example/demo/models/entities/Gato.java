@@ -21,7 +21,6 @@ public class Gato {
     private String nombre;
 
     @Column(name = "foto_gato")
-    @JsonIgnore
     private String foto;
     @Column(name = "color")
     private String color;

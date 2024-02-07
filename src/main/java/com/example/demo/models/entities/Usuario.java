@@ -11,8 +11,8 @@ import java.util.Collection;
 import java.util.List;
 
 @Entity
-@Table(name = "usuario", uniqueConstraints=
-@UniqueConstraint(columnNames={"username"}))
+@Table(name = "usuario", uniqueConstraints =
+@UniqueConstraint(columnNames = {"username"}))
 public class Usuario implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,7 +20,7 @@ public class Usuario implements UserDetails {
     private Long id;
 
     @NotNull
-    @Column(name = "username",unique = true)
+    @Column(name = "username", unique = true)
     private String username;
 
     @NotNull
