@@ -31,11 +31,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .authorizeHttpRequests(
-//                        configurer ->
-//                                configurer
-//                                        .anyRequest().authenticated()
-//                )
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         req -> req.requestMatchers("/login/**", "/register/**", "/showLoginPage")
@@ -44,18 +39,18 @@ public class SecurityConfig {
                                 .authenticated()
                 ).userDetailsService(usuarioTokenService)
                 .sessionManagement(session -> session
-                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS).disable())
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
-//                .formLogin(form ->
-//                        form
-//                                .loginPage("/showLoginPage")
-//                                .loginProcessingUrl("/authenticateTheUser")
-//                                .permitAll()
-//                ).logout(
-//                        LogoutConfigurer::permitAll
-//                ).exceptionHandling(configurer ->
-//                        configurer.accessDeniedPage("/access-denied")
-//                )
+                .formLogin(form ->
+                        form
+                                .loginPage("/showLoginPage")
+                                .loginProcessingUrl("/authenticateTheUser")
+                                .permitAll()
+                ).logout(
+                        LogoutConfigurer::permitAll
+                ).exceptionHandling(configurer ->
+                        configurer.accessDeniedPage("/access-denied")
+                )
                 .build();
     }
 
