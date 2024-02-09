@@ -31,11 +31,6 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
-//                .authorizeHttpRequests(
-//                        configurer ->
-//                                configurer
-//                                        .anyRequest().authenticated()
-//                )
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(
                         req -> req.requestMatchers("/login/**", "/register/**", "/showLoginPage")
