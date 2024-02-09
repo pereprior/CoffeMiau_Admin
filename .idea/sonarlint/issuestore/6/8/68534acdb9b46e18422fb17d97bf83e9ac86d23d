@@ -1,0 +1,5 @@
+
+[
+java:S1858"E"getUsername" returns a string, there's no need to call "toString()".(ÿ‡Ø
+V
+java:S1858"@"getRol" returns a string, there's no need to call "toString()".(ÿ‡Ø

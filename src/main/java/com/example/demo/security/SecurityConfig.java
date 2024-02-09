@@ -1,48 +1,47 @@
 package com.example.demo.security;
 
+import com.example.demo.jwt.JwtAuthenticationFilter;
+import com.example.demo.jwt.UsuarioTokenService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig {
-    @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
 
-        UserDetails clientTest = User.builder()
-                .username("client")
-                .password("{noop}client")
-                .roles("CLIENTE")
-                .build();
+    private final UsuarioTokenService usuarioTokenService;
+    private final JwtAuthenticationFilter jwtAuthenticationFilter;
 
-        UserDetails employeeTest = User.builder()
-                .username("employee")
-                .password("{noop}employee")
-                .roles("EMPLEADO")
-                .build();
-
-        UserDetails adminTest = User.builder()
-                .username("admin")
-                .password("{noop}admin")
-                .roles("EMPLEADO", "ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(clientTest, employeeTest, adminTest);
+    public SecurityConfig(UsuarioTokenService usuarioTokenService, JwtAuthenticationFilter jwtAuthenticationFilter) {
+        this.usuarioTokenService = usuarioTokenService;
+        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
     }
 
     @Bean
-    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(configurer ->
-                        configurer
-                                .anyRequest().authenticated()
-                ).formLogin(form ->
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        return http
+                .csrf(AbstractHttpConfigurer::disable)
+                .authorizeHttpRequests(
+                        req -> req.requestMatchers("/login/**", "/register/**", "/showLoginPage")
+                                .permitAll()
+                                .anyRequest()
+                                .authenticated()
+                ).userDetailsService(usuarioTokenService)
+                .sessionManagement(session -> session
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .formLogin(form ->
                         form
                                 .loginPage("/showLoginPage")
                                 .loginProcessingUrl("/authenticateTheUser")
@@ -52,13 +51,16 @@ public class SecurityConfig {
                 ).exceptionHandling(configurer ->
                         configurer.accessDeniedPage("/access-denied")
                 )
-                .csrf().disable();
-
-        return http.build();
+                .build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
+    }
+
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
     }
 }

@@ -1,0 +1,6 @@
+
+r
+java:S14883"]Immediately return this expression instead of assigning it to the temporary variable "token".(ý¤Þ
+j	java:S116"URename this field "SECRET_KEY" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ð™þË
+7
+java:S1170"!Make this final field static too.(Ð™þË
