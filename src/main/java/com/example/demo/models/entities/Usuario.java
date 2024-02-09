@@ -89,7 +89,7 @@ public class Usuario implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         Set<GrantedAuthority> authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_" + getRol()));
-        System.out.println(getUsername() +" el usuario tiene el rol:"+ getRol());
+        System.out.println(getUsername() +" el usuario tiene el rol: "+ getRol());
         System.out.println("Authorities: " + authorities);
         return authorities;
     }
