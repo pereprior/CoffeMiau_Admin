@@ -35,5 +35,7 @@ o
 ?src/main/java/com/example/demo/jwt/JwtAuthenticationFilter.java,c/b/cb2dc1c812fde536da0858b7309c54ae3b8cd0a2
 p
 @src/main/java/com/example/demo/models/entities/GatoAdoptado.java,9/7/97043397ea423839588b0fb5250c0fda72f1b5e9
-p
-@src/main/java/com/example/demo/controller/UsuarioController.java,d/a/da5e70aabd44567bebcf71601f815264e9812388
+S
+#.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
+]
+-.idea/sonarlint/securityhotspotstore/index.pb,8/8/88a9255124c95bdc913197c120a8d560edc59c8e
